@@ -1,41 +1,36 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d370f800f89019d266989ec', userName
+let coupleKey = '5d370f800f89019d266989ec', userName="Sonya"
 let activePage="Recommendations"
 
 const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
      await manager.getTransactions(coupleKey)
      const expenses =manager.allTransactions
-    // const expenses = [
-    //     { type: 'exspense', category: 'food', amount: '30', date: '13/3/12', comment: 'food is good' },
-    //     { type: 'income', category: 'salary', amount: '4000000', date: '3/3/2020', comment: 'work work work' },
-    //     { type: 'exspense', category: 'fun', amount: '100', date: '1/1/1111', comment: 'my comment' }
-    // ]
-    expenses.forEach(e => function(e){
-        e.date=moment(e.date).format("MMM Do YYYY") 
-        if (e.type==='Expense'){
-            e.type = true
-        }else{
-            e.type = true
-        }
-    })
+    expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
+    expenses.forEach(e => {e.date=moment(e.date).format("MMM Do YYYY")  })
     renderer.renderTransactionPage(expenses)
 }
 
-$('.nav-wrapper').on('click', 'li', async function () {
+$('.navbar').on('click', 'li', async function () {
     console.log("tab onClick")
     const tabName = $(this).closest('li').text()
     console.log(tabName)
+    if (tabName==="Profile"){
+        renderer.renderProfilePage(userName)
+    }
 });
 $('#container').on('click', '#submitIncome', async function () {
     console.log("submitIncome onClick")
-    submitIncome()
+    // submitIncome()
+    submitTransaction("Income")
 });
 
 $('#container').on('click', '#submitExpense', async function () {
     console.log("submitExpense onClick")
-    submitExpense()
+    // submitExpense()
+    submitTransaction("Expense")
+
 });
 $('#container').on('click', '#delete-transaction', function () {
     console.log("delete-transaction onClick")
@@ -44,15 +39,15 @@ $('#container').on('click', '#delete-transaction', function () {
     // deleteTransaction()
 });
 
-const submitIncome = async function () {
-    console.log("submitIncome")
-    const amount = $("#income-amount").val()
-    const date = $("#income-date").val()
-    const comment = $("#income-comment").val()
-    const category = $("#income-category").val()
+const submitTransaction = async function (type) {
+    const amount = $(`#${type}-amount`).val()
+    const date = $(`#${type}-date`).val()
+    const comment = $(`#${type}-comment`).val()
+    const category = $(`#${type}-category`).val()
     //to check that no one is empty
-    const incomeInfo = {
-        type: "Income",
+    const tranactionInfo = {
+        type: type,
+        coupleKey:coupleKey,
         category: category,
         amount: amount,
         date: date,
@@ -62,32 +57,8 @@ const submitIncome = async function () {
     console.log(date)
     console.log(comment)
     console.log(category)
+    manager.addTransaction(tranactionInfo)
 
-    // await manager.addExpense(coupleKey, incomeInfo)
-    // loadTransactionPage()
-}
-
-const submitExpense = async function () {
-    console.log("submitIncome")
-    const amount = $("#expense-amount").val()
-    const date = $("#expense-date").val()
-    const comment = $("#expense-comment").val()
-    const category = $("#expense-category").val()
-    //to check that no one is empty
-    const expenseInfo = {
-        type: "Expense",
-        category: category,
-        amount: amount,
-        date: date,
-        comment: comment
-    }
-    console.log(amount)
-    console.log(date)
-    console.log(comment)
-    console.log(category)
-
-    // await manager.addExpense(coupleKey, ExpenseInfo)
-    // loadTransactionPage()
 }
 
 renderer.renderNavbar()

@@ -32,14 +32,48 @@ align-items: center;
     margin-top: 40px;
     margin:auto;
     text-align: center;
+
 }
 
 
 
-.fa-plus-circle{
+.fa-arrow-circle-up{
     color: green;
 }
 
-.fa-minus-circle{
+.fa-arrow-circle-down{
 color: red;
+}
+
+#profile-page{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:50px;
+}
+
+#profile-header{
+    font-size: 40px;
+    margin:10px;
+}
+
+#profile-choose{
+    font-size: 15px;
+    margin: 5px;
+}
+
+.waves-effect{
+    margin: 10px;
+}
+#goals-box{
+    box-shadow: 5px 10px 8px #888888;
+    padding: 50px;
+    margin:20px;
+    border-radius: 5px;
+}
+
+.fa-heart{
+    color: red;
+    padding-right: 8px;
 }

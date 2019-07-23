@@ -14,15 +14,28 @@
 
 <body>
   <div class="navbar">
-
-  </div>
-  
-    
-
-    <div id="container">
   </div>
 
-    <script id="navbar-template" type="text/x-handlebars-template">
+
+
+  <div id="container">
+  </div>
+
+  <script id="profile-page-template" type="text/x-handlebars-template">
+    <div id="profile-page">
+    <div id="profile-header">Hi {{userName}}!</div>
+    <div id="profile-choose">Choose your favorites goals:</div>
+    <div id="goals-box">
+        <a class="waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Travel</a>
+        <a class="waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a house</a>
+        <a class="waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
+    </div>
+   
+    <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
+  </div>
+  </script>
+
+  <script id="navbar-template" type="text/x-handlebars-template">
       <nav>
           <div class="nav-wrapper">
             <a href="#" class="brand-logo center">Logo</a>
@@ -38,7 +51,7 @@
           </div>
         </nav>    
     </script>
-    <script id="transaction-template" type="text/x-handlebars-template">
+  <script id="transaction-template" type="text/x-handlebars-template">
     <div id="addTransactionForms">
         <div class="transaction-form" id="addExpenseForm">
           <div id="formHeader">Add Expense</div>
@@ -46,7 +59,7 @@
           <div class="row">
             <form class="col s12">
               <label>Category</label>
-              <select id="expense-category" class="browser-default">
+              <select id="Expense-category" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="Food">Food</option>
                 <option value="Fun">Fun</option>
@@ -54,19 +67,19 @@
               </select>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="expense-amount" type="number" class="validate">
+                  <input id="Expense-amount" type="number" class="validate">
                   <label for="Amount">Amount</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="expense-date" type="date" class="validate">
+                  <input id="Expense-date" type="date" class="validate">
                   <label for="Date">Date</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="expense-comment" type="text" class="validate">
+                  <input id="Expense-comment" type="text" class="validate">
                   <label for="Comment">Comment</label>
                 </div>
               </div>
@@ -81,26 +94,26 @@
           <div class="row">
               <form class="col s12">
                   <label>Category</label>
-                  <select class="browser-default" id="income-category">
+                  <select class="browser-default" id="Income-category">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="Salary">Salary</option>
                     <option value="Gift">Gift</option>
                   </select>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="income-amount" type="number" class="validate">
+                      <input id="Income-amount" type="number" class="validate">
                       <label for="Amount">Amount</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="income-date" type="date" class="validate">
+                      <input id="Income-date" type="date" class="validate">
                       <label for="Date">Date</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="income-comment" type="text" class="validate">
+                      <input id="Income-comment" type="text" class="validate">
                       <label for="Comment">Comment</label>
                     </div>
                   </div>
@@ -131,9 +144,9 @@
                 {{#each expenses}}
                 <tr id="transaction-table-row">
                   {{#if type}}
-                  <td><i class="fas fa-minus-circle"></i></td>
+                  <td><i class="fas fa-arrow-circle-down"></i></td>
                   {{else}}
-                  <td ><i class="fas fa-plus-circle"></i></td>
+                  <td ><i class="fas fa-arrow-circle-up"></i></i></td>
                   {{/if}}
                     <td id="category">{{category}}</td>
                     <td>{{amount}}</td>
@@ -148,15 +161,15 @@
       
     </script>
 
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="./handlebars/dist/handlebars.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="./jquery/dist/jquery.js"></script>
+  <script src="./handlebars/dist/handlebars.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="Render.js"></script>
-    <script src="LoveManager.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="Render.js"></script>
+  <script src="LoveManager.js"></script>
 
-    <script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 
 
