@@ -7,6 +7,16 @@ const path = require('path')
 const UserCouple = require('./server/models/UserCouple')
 const Transaction = require('./server/models/Transaction')
 
+// const sonyaAndNadav = new UserCouple ({
+//     coupleNames: ["Sonya", "Nadav"],
+//     coupleEmails: ["sonya.burlan@gmail.com", "nadav.ghez@gmail.com"],
+//     _password: "lovecounts",
+//     transactions: [],
+//     goals: ["travel"]
+// })
+
+// sonyaAndNadav.save()
+
 
 mongoose.connect('mongodb://localhost/LoveCounts', {useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'dist')))
