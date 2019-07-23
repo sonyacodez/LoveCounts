@@ -1,38 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 
-    <title>Love Counts</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <title>Love Counts</title>
 </head>
+
 <body>
-    
-    
-    <div id="navbar">navbar</div>
+
+<div>
     <nav>
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">Logo</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+            <li><a>Transactions</a></li>
+            <li><a>Reports</a></li>
+            <li><a>Recommendations</a></li>
+            <li><a>Profile</a></li>
+            <li><a>Logout</a></li>
           </ul>
         </div>
       </nav>
-    <div id="container">
-        
-    </div>
-    <script id="template" type="text/x-handlebars-template">
-        
-    </script>
     
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="./handlebars/dist/handlebars.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 
-    <script src="main.js"></script>
+      <div id="container">
+</div>
+
+
+  <script id="transaction-table-template" type="text/x-handlebars-template">
+    <div id="addTransactionForms">
+        <div id="addExpenseForm">
+          <div id="formHeader">Add Expense</div>
+  
+          <div class="row">
+            <form class="col s12">
+              <label>Category</label>
+              <select class="browser-default">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Food</option>
+                <option value="2">Fun</option>
+                <option value="3">Rent</option>
+              </select>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="Amount" type="number" class="validate">
+                  <label for="Amount">Amount</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="Date" type="date" class="validate">
+                  <label for="Date">Date</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="Comment" type="text" class="validate">
+                  <label for="Comment">Comment</label>
+                </div>
+              </div>
+          </div>
+          <a class="waves-effect waves-light btn">submit</a>
+          </form>
+        </div>
+  
+        <div id="addIncomeForm">
+            <div id="formHeader">Add Income</div>
+  
+          <div class="row">
+              <form class="col s12">
+                  <label>Category</label>
+                  <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Salary</option>
+                    <option value="2">Gift</option>
+                  </select>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="Amount" type="number" class="validate">
+                      <label for="Amount">Amount</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="Date" type="date" class="validate">
+                      <label for="Date">Date</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="Comment" type="text" class="validate">
+                      <label for="Comment">Comment</label>
+                    </div>
+                  </div>
+              </div>
+              <a class="waves-effect waves-light btn">submit</a>
+              </form>
+        </div>
+  
+      </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="transactions-list">
+        <div id="transactions-header">Transactions</div>
+        <table>
+            <thead>
+              <tr>
+                  <th>category</th>
+                  <th>amount</th>
+                  <th>date Price</th>
+                  <th>comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Food</td>
+                <td>200</td>
+                <td>13/3/2019</td>
+                <td>pizza</td>
+              </tr>
+              <tr>
+                <td>Fun</td>
+                <td>300</td>
+                <td>20/4/2019</td>
+                <td>movie</td>
+    
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      
+    </script>
+
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/handlebars/dist/handlebars.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="Render.js"></script>
+  <script src="LoveManager.js"></script>
+
+  <script src="main.js"></script>
 </body>
+
 </html>

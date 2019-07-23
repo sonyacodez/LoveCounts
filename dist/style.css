@@ -1,0 +1,32 @@
+#addTransactionForms{
+    display: flex;
+    justify-content: center;
+}
+
+#addExpenseForm{
+    margin:20px;
+    padding:10px;
+    
+}
+
+#addIncomeForm{
+    margin:20px;
+    padding:10px;
+}
+#formHeader{
+    font-size: 20px;
+    text-align: center;
+}
+#transactions-header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.transactions-list{
+    width: 80%;
+    margin-top: 40px;
+    margin:auto;
+    text-align: center;
+}
