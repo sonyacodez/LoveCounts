@@ -1,0 +1,45 @@
+#addTransactionForms{
+    display: flex;
+    justify-content: center;
+}
+
+.transaction-form{
+    margin:20px;
+    padding:10px;
+    box-shadow: 5px 10px 8px #888888;
+padding-left: 60px;
+padding-right: 60px;
+align-content: center;
+align-items: center;
+}
+.transaction-form #submitIncome{
+    /* align-self: center;
+    margin: auto; */
+}
+#formHeader{
+    font-size: 20px;
+    text-align: center;
+}
+#transactions-header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.transactions-list{
+    width: 80%;
+    margin-top: 40px;
+    margin:auto;
+    text-align: center;
+}
+
+
+
+.fa-plus-circle{
+    color: green;
+}
+
+.fa-minus-circle{
+color: red;
+}
