@@ -67,7 +67,7 @@
               </div>
           </div>
           <a class="waves-effect waves-light btn">submit</a>
-          </form>
+        </form>
         </div>
   
         <div id="addIncomeForm">
@@ -76,32 +76,33 @@
           <div class="row">
               <form class="col s12">
                   <label>Category</label>
-                  <select class="browser-default">
+                  <select class="browser-default" id="income-category">
                     <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Salary</option>
-                    <option value="2">Gift</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Gift">Gift</option>
                   </select>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="Amount" type="number" class="validate">
+                      <input id="income-amount" type="number" class="validate">
                       <label for="Amount">Amount</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="Date" type="date" class="validate">
+                      <input id="income-date" type="date" class="validate">
                       <label for="Date">Date</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="Comment" type="text" class="validate">
+                      <input id="income-comment" type="text" class="validate">
                       <label for="Comment">Comment</label>
                     </div>
                   </div>
               </div>
-              <a class="waves-effect waves-light btn">submit</a>
-              </form>
+              
+              <a id="submitIncome"class="waves-effect waves-light btn">submit</a>
+            </form>
         </div>
   
       </div>

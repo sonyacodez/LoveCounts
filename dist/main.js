@@ -1,26 +1,58 @@
 const renderer = Render()
 // const manager = LoveManager()
-let coupleKey ='5d36d21003c5c00ab806bc3a',userName 
+let coupleKey = '5d36d21003c5c00ab806bc3a', userName
 
 
 // Sends userKey to getTransactions function(in model)
 // Receives an array of expense objects.
 // renderTransactionPage
 
-const loadTransactionPage =  async function () {
+const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
-    // await manager.getTransactions(coupleKey)
-    const expenses= [
+    // await const expenses =manager.getTransactions(coupleKey)
+    const expenses = [
         { type: 'exspense', category: 'food', amount: '30', date: '13/3/12', comment: 'food is good' },
-
         { type: 'income', category: 'salary', amount: '4000000', date: '3/3/2020', comment: 'work work work' },
         { type: 'exspense', category: 'fun', amount: '100', date: '1/1/1111', comment: 'my comment' }
-
-
     ]
-    expenses.forEach(e=> {e.type==='exspense' ? e.type=true : e.type=false})
-    renderer.renderTransactionPage(expenses)//manager.allTransactions)
-    
+    expenses.forEach(e => { e.type === 'exspense' ? e.type = true : e.type = false })
+    renderer.renderTransactionPage(expenses)
+
 }
 
+$('#container').on('click', '#submitIncome', async function () {
+    console.log("submitIncome onClick")
+    submitIncome()
+});
+
+// submitExpense:
+// Sends object with keys: {category: string, amount:number, date: date, comment:string} to addExpense function
+// renderExpense
+
+const submitIncome = async function () {
+    console.log("submitIncome")
+    const amount = $("#income-amount").val()
+    const date = $("#income-date").val()
+    const comment = $("#income-comment").val()
+    const category = $("#income-category").val()
+    //to check if no one is empty
+    const incomeInfo = {
+        category: category,
+        amount: amount,
+        date: date,
+        comment: comment
+    }
+    
+    console.log(amount)
+    console.log(date)
+    console.log(comment)
+    console.log(category)
+
+    // await manager.addExpense(coupleKey, incomeInfo)
+    loadTransactionPage()
+}
+
+submitIncome
 loadTransactionPage()
+
+
