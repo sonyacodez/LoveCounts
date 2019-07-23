@@ -12,10 +12,14 @@ const loadTransactionPage = async function () {
     //     { type: 'income', category: 'salary', amount: '4000000', date: '3/3/2020', comment: 'work work work' },
     //     { type: 'exspense', category: 'fun', amount: '100', date: '1/1/1111', comment: 'my comment' }
     // ]
-    expenses.forEach(e => { e.type === 'exspense' ? e.type = true : e.type = false })
-    expenses.forEach(e => {e.date=moment(e.date).format("MMM Do YYYY")  })
-
-    // moment().format
+    expenses.forEach(e => function(e){
+        e.date=moment(e.date).format("MMM Do YYYY") 
+        if (e.type==='Expense'){
+            e.type = true
+        }else{
+            e.type = true
+        }
+    })
     renderer.renderTransactionPage(expenses)
 }
 
