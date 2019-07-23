@@ -1,6 +1,6 @@
 const renderer = Render()
 // const manager = LoveManager()
-let coupleKey = '5d36d21003c5c00ab806bc3a', userName
+let coupleKey = '5d370a84b925c61d7b0e0fa9', userName
 
 
 // Sends userKey to getTransactions function(in model)
@@ -25,9 +25,11 @@ $('#container').on('click', '#submitIncome', async function () {
     submitIncome()
 });
 
-// submitExpense:
-// Sends object with keys: {category: string, amount:number, date: date, comment:string} to addExpense function
-// renderExpense
+$('#container').on('click', '#submitExpense', async function () {
+    console.log("submitExpense onClick")
+    submitExpense()
+});
+
 
 const submitIncome = async function () {
     console.log("submitIncome")
@@ -35,24 +37,46 @@ const submitIncome = async function () {
     const date = $("#income-date").val()
     const comment = $("#income-comment").val()
     const category = $("#income-category").val()
-    //to check if no one is empty
+    //to check that no one is empty
     const incomeInfo = {
+        type: "Income",
         category: category,
         amount: amount,
         date: date,
         comment: comment
     }
-    
     console.log(amount)
     console.log(date)
     console.log(comment)
     console.log(category)
 
     // await manager.addExpense(coupleKey, incomeInfo)
-    loadTransactionPage()
+    // loadTransactionPage()
 }
 
-submitIncome
+const submitExpense = async function () {
+    console.log("submitIncome")
+    const amount = $("#expense-amount").val()
+    const date = $("#expense-date").val()
+    const comment = $("#expense-comment").val()
+    const category = $("#expense-category").val()
+    //to check that no one is empty
+    const expenseInfo = {
+        type: "Expense",
+        category: category,
+        amount: amount,
+        date: date,
+        comment: comment
+    }
+    console.log(amount)
+    console.log(date)
+    console.log(comment)
+    console.log(category)
+
+    // await manager.addExpense(coupleKey, ExpenseInfo)
+    // loadTransactionPage()
+}
+
 loadTransactionPage()
 
 

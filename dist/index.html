@@ -35,43 +35,43 @@
 
     <script id="transaction-template" type="text/x-handlebars-template">
     <div id="addTransactionForms">
-        <div id="addExpenseForm">
+        <div class="transaction-form" id="addExpenseForm">
           <div id="formHeader">Add Expense</div>
   
           <div class="row">
             <form class="col s12">
               <label>Category</label>
-              <select class="browser-default">
+              <select id="expense-category" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
-                <option value="1">Food</option>
-                <option value="2">Fun</option>
-                <option value="3">Rent</option>
+                <option value="Food">Food</option>
+                <option value="Fun">Fun</option>
+                <option value="Rent">Rent</option>
               </select>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="Amount" type="number" class="validate">
+                  <input id="expense-amount" type="number" class="validate">
                   <label for="Amount">Amount</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="Date" type="date" class="validate">
+                  <input id="expense-date" type="date" class="validate">
                   <label for="Date">Date</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="Comment" type="text" class="validate">
+                  <input id="expense-comment" type="text" class="validate">
                   <label for="Comment">Comment</label>
                 </div>
               </div>
           </div>
-          <a class="waves-effect waves-light btn">submit</a>
+          <a id="submitExpense" class="waves-effect waves-light btn">submit</a>
         </form>
         </div>
   
-        <div id="addIncomeForm">
-            <div id="formHeader">Add Income</div>
+        <div class="transaction-form" id="addIncomeForm">
+            <div  id="formHeader">Add Income</div>
   
           <div class="row">
               <form class="col s12">
@@ -101,7 +101,7 @@
                   </div>
               </div>
               
-              <a id="submitIncome"class="waves-effect waves-light btn">submit</a>
+              <a id="submitIncome" class="waves-effect waves-light btn">submit</a>
             </form>
         </div>
   
