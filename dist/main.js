@@ -13,6 +13,9 @@ const loadTransactionPage = async function () {
     //     { type: 'exspense', category: 'fun', amount: '100', date: '1/1/1111', comment: 'my comment' }
     // ]
     expenses.forEach(e => { e.type === 'exspense' ? e.type = true : e.type = false })
+    expenses.forEach(e => {e.date=moment(e.date).format("MMM Do YYYY")  })
+
+    // moment().format
     renderer.renderTransactionPage(expenses)
 }
 
