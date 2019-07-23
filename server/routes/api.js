@@ -5,12 +5,15 @@ const UserCouple = require('../models/UserCouple')
 const Transaction = require('../models/Transaction')
 const moment = require('moment')
 
-router.get('/transactions', (req,res)=>{
-    const coupleKey = req.body
-    UserCouple.findById(`${coupleKey.coupleKey}`)
+
+router.get('/transactions/:key', (req,res)=>{
+    const coupleKey = req.params.key
+    UserCouple.findById(`${coupleKey}`)
         .populate("transactions")
         .sort({date: -1})
         .exec((err,usercouple)=>{
+            // console.log(usercouple)
+
             res.send(usercouple.transactions)
         })
 })
