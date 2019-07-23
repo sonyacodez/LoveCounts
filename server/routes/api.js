@@ -5,9 +5,9 @@ const UserCouple = require('../models/UserCouple')
 const Transaction = require('../models/Transaction')
 const moment = require('moment')
 
-router.get('/transactions', (req,res)=>{
-    const coupleKey = req.body
-    UserCouple.findById(`${coupleKey.coupleKey}`)
+router.get('/transactions/:coupleKey', (req,res)=>{
+    const coupleKey = req.params.coupleKey
+    UserCouple.findById(`${coupleKey}`)
         .populate("transactions")
         .sort({date: -1})
         .exec((err,usercouple)=>{
@@ -34,13 +34,23 @@ router.post('/expenses', function(req,res){
     })
 })
 
-router.get('/goals', (req,res)=>{
-    const coupleKey = req.body
-    UserCouple.findById(`${coupleKey.coupleKey}`)
+router.get('/goals/:coupleKey', (req,res)=>{
+    const coupleKey = req.params.coupleKey
+    UserCouple.findById(`${coupleKey}`)
         .sort({date: -1})
         .exec((err,usercouple)=>{
             res.send(usercouple.goals)
         })
+})
+
+router.post('/goal', function(req,res){
+    const goalName = req.body.goalName
+    const coupleKey = req.body.coupleKey
+    UserCouple.findById(coupleKey, (err,response)=>{
+        response.goals.push(goalName)
+        response.save()
+        res.end()
+    })
 })
 
 module.exports = router
