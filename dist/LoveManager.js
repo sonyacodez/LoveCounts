@@ -5,20 +5,20 @@ class LoveManager {
     }
     //sends a transaction data as POST request to the /expenses post route on the server
 
-//     addExpense(transaction){
-//         const transactionObject = {
-//             category: transaction.category,
-//             type: transaction.type,
-//             amount: transaction.amount, 
-//             date: transaction.date, 
-//             comment: transaction.comment,
-//             coupleKey: transaction.coupleKey
-//         }
-//         this.allTransactions.push(transactionObject)
-//         $.post(`/expenses`,transactionObject,function (res) {
-//             console.log("transaction POST complete")
-//     })
-// }
+    addExpense(transaction){
+        const transactionObject = {
+            category: transaction.category,
+            type: transaction.type,
+            amount: transaction.amount, 
+            date: transaction.date, 
+            comment: transaction.comment,
+            coupleKey: transaction.coupleKey
+        }
+        this.allTransactions.push(transactionObject)
+        $.post(`/expenses`,transactionObject,function (res) {
+            console.log("transaction POST complete")
+    })
+}
     //sends a goal data as POST request to the /goal post route on the server
 
     // addFavGoal(goalData){
@@ -59,5 +59,11 @@ class LoveManager {
     // }
 }
 
-// const loveManager = new LoveManager()
-// loveManager.getTransactions("5d370810c6046607fc5e5e56")
+const loveManager = new LoveManager()
+loveManager.addExpense({
+    category: "Income",
+    type: "Travel",
+    amount: 2000, 
+    date: 2019-07-30, 
+    comment: "Hi",
+    coupleKey: "5d370810c6046607fc5e5e57"})

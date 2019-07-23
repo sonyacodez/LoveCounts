@@ -6,8 +6,8 @@ const UserCouple = require('../models/UserCouple')
 // const APIkey = "f37bef48cce84ed092b150636191707"
 // const moment = require('moment')
 
-router.get('/transactions/:key', (req,res)=>{
-    const coupleKey = req.params.key
+router.get('/transactions/:coupleKey', (req,res)=>{
+    const coupleKey = req.params.coupleKey
     UserCouple.findById(`${coupleKey}`)
         .populate("transactions")
         .sort({date: -1})
