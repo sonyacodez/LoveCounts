@@ -15,7 +15,7 @@ router.get('/transactions/:coupleKey', (req,res)=>{
         })
 })
 
-router.post('/expenses', function(req,res){
+router.post('/transactions', function(req,res){
     const expenseInfo = req.body
     const coupleKey = req.body.coupleKey
     const expenseDate = req.body.date ? moment(req.body.date).format('LLLL') : null
