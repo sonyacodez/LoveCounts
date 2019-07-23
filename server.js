@@ -7,7 +7,7 @@ const path = require('path')
 const UserCouple = require('./server/models/UserCouple')
 const Transaction = require('./server/models/Transaction')
 
-// ------------------------DUMMY DATA------------------------
+// // ------------------------DUMMY DATA------------------------
 // const sonyaAndNadav = new UserCouple ({
 //     coupleNames: ["Sonya", "Nadav"],
 //     coupleEmails: ["sonya.burlan@gmail.com", "nadav.ghez@gmail.com"],
