@@ -34,5 +34,13 @@ router.post('/expenses', function(req,res){
     })
 })
 
+router.get('/goals', (req,res)=>{
+    const coupleKey = req.body
+    UserCouple.findById(`${coupleKey.coupleKey}`)
+        .sort({date: -1})
+        .exec((err,usercouple)=>{
+            res.send(usercouple.goals)
+        })
+})
 
 module.exports = router
