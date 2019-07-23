@@ -5,7 +5,7 @@ const Render = function () {
         $("#container").empty()
         const source = $('#transaction-template').html();
         const template = Handlebars.compile(source);
-        let newHTML = template({expenses});
+        let newHTML = template({ expenses });
         $('#container').append(newHTML);
     }
 

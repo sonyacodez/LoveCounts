@@ -1,5 +1,5 @@
 const renderer = Render()
-// const manager = LoveManager()
+// const managner = LoveManager()
 let coupleKey = '5d370a84b925c61d7b0e0fa9', userName
 
 
@@ -29,7 +29,12 @@ $('#container').on('click', '#submitExpense', async function () {
     console.log("submitExpense onClick")
     submitExpense()
 });
-
+$('#container').on('click', '#delete-transaction', function () {
+    console.log("delete-transaction onClick")
+    const item = $(this).closest('#transaction-table-row').find('#category').text()
+    console.log(item)
+    // deleteTransaction()
+});
 
 const submitIncome = async function () {
     console.log("submitIncome")

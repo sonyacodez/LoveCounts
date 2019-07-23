@@ -124,17 +124,17 @@
             </thead>
             <tbody>
                 {{#each expenses}}
-                <tr>
+                <tr id="transaction-table-row">
                   {{#if type}}
                   <td><i class="fas fa-minus-circle"></i></td>
                   {{else}}
                   <td ><i class="fas fa-plus-circle"></i></td>
                   {{/if}}
-                    <td>{{category}}</td>
+                    <td id="category">{{category}}</td>
                     <td>{{amount}}</td>
                     <td>{{date}}</td>
                     <td>{{comment}}</td>
-                    <td><i class="fas fa-trash"></i></td>
+                    <td><i id="delete-transaction" class="fas fa-trash"></i></td>
                   </tr>
                 {{/each}}
             </tbody>
@@ -143,8 +143,8 @@
       
     </script>
 
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="../node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="./handlebars/dist/handlebars.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="Render.js"></script>
     <script src="LoveManager.js"></script>
