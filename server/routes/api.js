@@ -15,10 +15,10 @@ router.get('/transactions/:coupleKey', (req,res)=>{
         })
 })
 
-router.post('/expenses', function(req,res){
+router.post('/transactions', function(req,res){
     const expenseInfo = req.body
     const coupleKey = req.body.coupleKey
-    const expenseDate = req.body.date ? moment(req.body.date).format('LLLL') : null
+    const expenseDate = req.body.date
     const newExpense = new Transaction ({
         type: expenseInfo.type,
         category: expenseInfo.category,
@@ -52,5 +52,29 @@ router.post('/goal', function(req,res){
         res.end()
     })
 })
+
+router.delete(`/transaction/:coupleKey/:transactionKey`, (req,res) => {
+    const transactionKey = req.params.transactionKey
+    const coupleKey = req.params.coupleKey
+    Transaction.deleteOne({_id: transactionKey},(err, response)=> console.log(err))
+    UserCouple.findById(coupleKey, (err,response)=>{
+        const index = response.transactions.findIndex(t => t._id = transactionKey)
+        response.transactions.splice(index, 1)
+        response.save()
+        res.end()
+    })
+})
+
+router.delete(`/goal/:coupleKey/:goalName`, (req,res) => {
+    const coupleKey = req.params.coupleKey
+    const goalName = req.params.goalName
+    UserCouple.findById(coupleKey, (err,response)=>{
+        const index = response.goals.findIndex(t => t === goalName)
+        response.goals.splice(index, 1)
+        response.save()
+        res.end()
+    })
+})
+
 
 module.exports = router
