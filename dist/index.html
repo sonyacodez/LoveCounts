@@ -1,14 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+
+  <title>Love Counts</title>
 </head>
+
 <body>
-    <script src="jquery/dist/jquery.js"></script>
+  <div class="navbar">
+
+  </div>
+  
+    
+
+    <div id="container">
+  </div>
+
+    <script id="navbar-template" type="text/x-handlebars-template">
+      <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Logo</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              <li id="transactions-tab"><a>Transactions</a></li>
+              <li id="reports-tab"><a>Reports</a></li>
+              <li><a>Recommendations</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a>Profile</a></li>
+              <li><a>Logout</a></li>
+            </ul>
+          </div>
+        </nav>    
+    </script>
+    <script id="transaction-template" type="text/x-handlebars-template">
+    <div id="addTransactionForms">
+        <div class="transaction-form" id="addExpenseForm">
+          <div id="formHeader">Add Expense</div>
+  
+          <div class="row">
+            <form class="col s12">
+              <label>Category</label>
+              <select id="expense-category" class="browser-default">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="Food">Food</option>
+                <option value="Fun">Fun</option>
+                <option value="Rent">Rent</option>
+              </select>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="expense-amount" type="number" class="validate">
+                  <label for="Amount">Amount</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="expense-date" type="date" class="validate">
+                  <label for="Date">Date</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="expense-comment" type="text" class="validate">
+                  <label for="Comment">Comment</label>
+                </div>
+              </div>
+          </div>
+          <a id="submitExpense" class="waves-effect waves-light btn">submit</a>
+        </form>
+        </div>
+  
+        <div class="transaction-form" id="addIncomeForm">
+            <div  id="formHeader">Add Income</div>
+  
+          <div class="row">
+              <form class="col s12">
+                  <label>Category</label>
+                  <select class="browser-default" id="income-category">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Gift">Gift</option>
+                  </select>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="income-amount" type="number" class="validate">
+                      <label for="Amount">Amount</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="income-date" type="date" class="validate">
+                      <label for="Date">Date</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="income-comment" type="text" class="validate">
+                      <label for="Comment">Comment</label>
+                    </div>
+                  </div>
+              </div>
+              
+              <a id="submitIncome" class="waves-effect waves-light btn">submit</a>
+            </form>
+        </div>
+  
+      </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="transactions-list">
+        <div id="transactions-header">Transactions</div>
+        <table>
+            <thead>
+              <tr>
+                  <th></th>
+                  <th>category</th>
+                  <th>amount</th>
+                  <th>date</th>
+                  <th>comment</th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                {{#each expenses}}
+                <tr id="transaction-table-row">
+                  {{#if type}}
+                  <td><i class="fas fa-minus-circle"></i></td>
+                  {{else}}
+                  <td ><i class="fas fa-plus-circle"></i></td>
+                  {{/if}}
+                    <td id="category">{{category}}</td>
+                    <td>{{amount}}</td>
+                    <td>{{date}}</td>
+                    <td>{{comment}}</td>
+                    <td><i id="delete-transaction" class="fas fa-trash"></i></td>
+                  </tr>
+                {{/each}}
+            </tbody>
+          </table>
+      </div>
+      
+    </script>
+
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="Render.js"></script>
     <script src="LoveManager.js"></script>
 
+    <script src="main.js"></script>
 </body>
+
+
 </html>
