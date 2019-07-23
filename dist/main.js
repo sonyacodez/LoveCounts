@@ -1,11 +1,7 @@
 const renderer = Render()
 const manager = new LoveManager()
 let coupleKey = '5d370f800f89019d266989ec', userName
-
-
-// Sends userKey to getTransactions function(in model)
-// Receives an array of expense objects.
-// renderTransactionPage
+let activePage="Recommendations"
 
 const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
@@ -18,9 +14,13 @@ const loadTransactionPage = async function () {
     // ]
     expenses.forEach(e => { e.type === 'exspense' ? e.type = true : e.type = false })
     renderer.renderTransactionPage(expenses)
-
 }
 
+$('.nav-wrapper').on('click', 'li', async function () {
+    console.log("tab onClick")
+    const tabName = $(this).closest('li').text()
+    console.log(tabName)
+});
 $('#container').on('click', '#submitIncome', async function () {
     console.log("submitIncome onClick")
     submitIncome()
@@ -83,6 +83,7 @@ const submitExpense = async function () {
     // loadTransactionPage()
 }
 
+renderer.renderNavbar()
 loadTransactionPage()
 
 

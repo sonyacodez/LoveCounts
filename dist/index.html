@@ -13,26 +13,31 @@
 </head>
 
 <body>
+  <div class="navbar">
 
-  <div>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a>Transactions</a></li>
-          <li><a>Reports</a></li>
-          <li><a>Recommendations</a></li>
-          <li><a>Profile</a></li>
-          <li><a>Logout</a></li>
-        </ul>
-      </div>
-    </nav>
-
+  </div>
+  
+    
 
     <div id="container">
-    </div>
+  </div>
 
-
+    <script id="navbar-template" type="text/x-handlebars-template">
+      <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Logo</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              <li id="transactions-tab"><a>Transactions</a></li>
+              <li id="reports-tab"><a>Reports</a></li>
+              <li><a>Recommendations</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a>Profile</a></li>
+              <li><a>Logout</a></li>
+            </ul>
+          </div>
+        </nav>    
+    </script>
     <script id="transaction-template" type="text/x-handlebars-template">
     <div id="addTransactionForms">
         <div class="transaction-form" id="addExpenseForm">

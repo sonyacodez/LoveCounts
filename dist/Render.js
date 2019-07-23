@@ -9,8 +9,18 @@ const Render = function () {
         $('#container').append(newHTML);
     }
 
+    const renderNavbar = function (activeTab) {
+        console.log("renderNavbar")
+        $(".navbar").empty()
+        const source = $('#navbar-template').html();
+        const template = Handlebars.compile(source);
+        let newHTML = template({ activeTab });
+        $('.navbar').append(newHTML);
+    }
+    
     return {
-        renderTransactionPage
+        renderTransactionPage,
+        renderNavbar
     }
 }
 
