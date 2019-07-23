@@ -5,7 +5,7 @@ class LoveManager {
     }
     //sends a transaction data as POST request to the /expenses post route on the server
 
-    addTransaction(transaction){//WORKS
+    addTransaction(transaction){
         const transactionObject = {
             category: transaction.category,
             type: transaction.type,
@@ -21,7 +21,7 @@ class LoveManager {
 }
     //sends a goal data as POST request to the /goal post route on the server
 
-    addFavGoal(goalData){//WORKS
+    addFavGoal(goalData){
         const goalObject = {
             coupleKey: goalData.coupleKey,
             goalName: goalData.goalName
@@ -30,13 +30,13 @@ class LoveManager {
             console.log("goal POST complete")
         })
 }
-    async getTransactions(coupleKey){//WORKS
+    async getTransactions(coupleKey){
         let transactions = await $.get(`/transactions/${coupleKey}`)
         this.allTransactions = transactions;
     }
 
 
-    async getGoals(coupleKey){//WORKS
+    async getGoals(coupleKey){
         let result = await $.get(`/goals/${coupleKey}`)
         return result
     }
@@ -58,17 +58,5 @@ class LoveManager {
     // }
 }
 
-//CHECKS
 
-// const loveManager = new LoveManager()
 
-// loveManager.addTransaction({
-//     category: 'coctails',
-//     type: 'income',
-//     amount: 1000000, 
-//     date: '2019-07-24', 
-//     comment: "Hey I'm checking",
-//     coupleKey: "5d370810c6046607fc5e5e56"
-// })
-
-// console.log (loveManager.allTransactions)
