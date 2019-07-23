@@ -1,15 +1,26 @@
 {
   "name": "lovecounts",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.1.2",
-    "jquery": "^3.4.1"
-  }
+    "jquery": "^3.4.1",
+    "materialize-css": "^1.0.0-rc.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liatcohen/loveCounts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liatcohen/loveCounts/issues"
+  },
+  "homepage": "https://github.com/liatcohen/loveCounts#readme",
+  "description": ""
 }
