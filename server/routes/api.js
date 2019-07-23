@@ -6,14 +6,17 @@ const UserCouple = require('../models/UserCouple')
 // const APIkey = "f37bef48cce84ed092b150636191707"
 // const moment = require('moment')
 
-router.get('/transactions', (req,res)=>{
-    const coupleKey = req.body
-    UserCouple.findById(`${coupleKey.key}`)
+router.get('/transactions/:key', (req,res)=>{
+    const coupleKey = req.params.key
+    UserCouple.findById(`${coupleKey}`)
         .populate("transactions")
+        .sort({date: -1})
         .exec((err,usercouple)=>{
+            // console.log(usercouple)
+
             res.send(usercouple.transactions)
         })
-        .sort({date: -1})
+        
 })
 
 module.exports = router

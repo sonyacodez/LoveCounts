@@ -1,5 +1,3 @@
-const coupleKey: '5d36d21003c5c00ab806bc3a';
-
 class LoveManager {
     constructor(allTransactions, allGoalOptions) {
         this.allTransactions = [];
@@ -13,7 +11,8 @@ class LoveManager {
             type: transaction.type,
             amount: transaction.amount, 
             date: transaction.date, 
-            comment: transaction.comment
+            comment: transaction.comment,
+            coupleKey: transaction.coupleKey
         }
         this.allTransactions.push(transactionObject)
         $.post(`/expenses`,transactionObject,function (res) {
@@ -32,12 +31,14 @@ class LoveManager {
         })
 }
     async getTransactions(coupleKey){
-        let transactions = await $.get(`transactions/${coupleKey}`)
+        let transactions = await $.get(`/transactions/${coupleKey}`)
+        console.log(transactions)
         this.allTransactions = transactions;
     }
 
+
     async getGoals(coupleKey){
-        let result = await $.get(`goals/${coupleKey}`)
+        let result = await $.get(`/goals/${coupleKey}`)
         return result
         }
     
@@ -58,3 +59,5 @@ class LoveManager {
     }
 }
 
+const loveManager = new LoveManager()
+loveManager.getTransactions("5d370810c6046607fc5e5e56")
