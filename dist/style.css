@@ -30,3 +30,13 @@
     margin:auto;
     text-align: center;
 }
+
+
+
+.fa-plus-circle{
+    color: green;
+}
+
+.fa-minus-circle{
+color: red;
+}

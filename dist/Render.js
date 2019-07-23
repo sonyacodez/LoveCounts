@@ -1,11 +1,11 @@
 
 const Render = function () {
-    const renderTransactionPage = function () {
+    const renderTransactionPage = function (expenses) {
         console.log("renderTransactionPage")
         $("#container").empty()
         const source = $('#transaction-template').html();
         const template = Handlebars.compile(source);
-        let newHTML = template();
+        let newHTML = template({expenses});
         $('#container').append(newHTML);
     }
 
