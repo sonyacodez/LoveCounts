@@ -77,5 +77,60 @@ router.delete(`/goal/:coupleKey/:goalName`, (req,res) => {
     })
 })
 
+router.get(`/thisMonthExpenses/:coupleKey/:startDate/:endDate`, (req,res)=>{
+    const coupleKey = req.params.coupleKey
+    const startDate = moment(req.params.startDate)
+    const endDate = moment(req.params.endDate)
+    UserCouple.findById(coupleKey)
+        .populate('transactions')
+        .exec((err,thisUser)=>{
+            const categoryAndAmountObject = {}
+            const allExpenses = thisUser.transactions.filter(t => t.type === "Expense")
+            const expensesThisMonthOnly = allExpenses.filter(e => moment(e.date).isBetween(startDate, endDate))
+            expensesThisMonthOnly.forEach(e => {
+                if(categoryAndAmountObject[e.category]){
+                    categoryAndAmountObject[e.category] += e.amount
+                }
+                else{
+                    categoryAndAmountObject[e.category] = e.amount
+                }
+            })
+            const categoryArray = Object.keys(categoryAndAmountObject)
+            const amountArray = []
+            categoryArray.forEach(c => amountArray)
+            for(let i in categoryArray){
+                amountArray.push(categoryAndAmountObject[categoryArray[i]])
+            }
+            const categoryAndAmountArrays = {
+                categories: categoryArray,
+                amount: amountArray
+            }
+            res.send(categoryAndAmountArrays)
+        })
+})
+
+// router.get('/car/:address/:citystatezip', (req,res)=>{
+//     const APIKey = "X1-ZWz17r8v83e58r_8s1xw"
+//     const address = req.params.address
+//     const citystatezip = req.params.citystatezip
+//     request.get(`http://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=${APIKey}&address=${address}&citystatezip=${citystatezip}`, function(err, housesForSale){
+//         const houses = JSON.parse(housesForSale.body || "{}")
+//         // const allActiveTeamPlayers = roster.filter(p => p.teamId === teamToIDs[teamName] && p.isActive)
+//         // const myTeamPlayers = allActiveTeamPlayers.map(a => {
+//         //     return {
+//         //         firstName: a.firstName,
+//         //         lastName: a.lastName,
+//         //         jersey: a.jersey,
+//         //         pos: a.pos
+//         //     }
+//     })
+//     Below is an example of calling the API for the address for 
+//     the exact address match "2114 Bigelow Ave", "Seattle, WA":
+//     http://www.zillow.com/webservice/GetDeepSearchResults.htm
+//     ?zws-id=<ZWSID>
+//     &
+//     address=2114+Bigelow+Ave
+//     &
+//     citystatezip=Seattle%2C+WA
 
 module.exports = router
