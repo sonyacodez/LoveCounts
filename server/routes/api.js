@@ -147,27 +147,22 @@ router.get(`/travel/:destination/:startDate`, (req, res)=>{
     })
 })
 
-router.get(`/events`, (req, res)=>{
-    request.get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=utaQBvfKItKAf5gjW4pD86XDIyUV1fto
-    `, (err, response)=>{
-        const getEvents = JSON.parse(response.body || "{}")._embedded.events
-        const myEvents = getEvents.map(e => {
+router.get(`/sportEvents`, (req, res)=>{
+    request.get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=utaQBvfKItKAf5gjW4pD86XDIyUV1fto`, (err, response)=>{
+        const getEvents = JSON.parse(response.body || "[]")._embedded.events
+        const getSportEvents = getEvents.filter(e => e.classifications[0].segment.name === "Sports")
+        const mySportEvents = getSportEvents.map(e => {
             return {
                 eventName: e.name,
+                eventURL: e.url,
                 eventImage: e.images[0].url,
                 eventDateStart: e.dates.start.localDate,
-                eventGenre: e.classifications[0].segment.name,
-                eventSubGenre: e.classifications[0].genre.name,
+                eventSportType: e.classifications[0].genre.name,
                 eventID: e.id
             }
         })
-        res.send(myEvents)
+        res.send(mySportEvents)
     })
 })
-
-// var bby = require('bestbuy')('YourAPIKey');
-// bby.products('manufacturer=canon&salePrice<1000',{show:'sku,name,salePrice'}).then(function(data){
-//   console.log(data);
-// });
 
 module.exports = router
