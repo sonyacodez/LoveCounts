@@ -28,6 +28,7 @@ router.post('/transactions', function(req,res){
     })
     newExpense.save()
     UserCouple.findById(coupleKey, (err,response)=>{
+        console.log(UserCouple)
         response.transactions.push(newExpense)
         response.save()
         res.end()
