@@ -34,6 +34,8 @@ $('.navbar').on('click', 'li', async function () {
 const loadRecommendationsPage = async function () {
     const favGoals = await manager.getGoals(coupleKey)
     const savings = await manager.getSavings(coupleKey, "07")
+
+    
     renderer.renderRecPage(favGoals,savings)
 
 }
@@ -44,6 +46,23 @@ const loadProfilePage = async function () {
     favGoals.forEach(g => goalObj[g] = true)
     renderer.renderProfilePage(userName, goalObj)
 }
+
+const loadFlights = async function () {
+    const favGoals = await manager.getGoals(coupleKey)
+    let goalObj = {}
+    favGoals.forEach(g => goalObj[g] = true)
+    renderer.renderProfilePage(userName, goalObj)
+}
+
+$('#container').on('change', '.goal-dropdown', async function () {
+    console.log("picked!!!!!")
+    var end = this.value;
+    console.log(end)
+    renderer.renderRecTravelForm()
+    // var firstDropVal = $('#pick').val();
+});
+
+
 
 $('#container').on('click', '.fav-item', async function () {
     const favGoal = $(this).closest('a').attr('data-id')
@@ -64,6 +83,22 @@ $('#container').on('click', '.fav-item', async function () {
     }
 });
 
+$('#container').on('click', '#searchFlightBtn', async function () {
+    console.log("search")
+    const destination = $(`#destination`).val()
+    console.log(destination)
+    // const departureDate = $(`#departure-date`).val()
+    // console.log(departureDate)
+    const departureDate = moment($(`#departure-date`).val()).format("YYYYMMDD")
+    console.log(departureDate)
+    const flights= await manager.getFlights(destination,departureDate)
+    flights.forEach(f=> f.price=Math.round(f.price))
+    flights.forEach(f=> f.arrivalDate= f.arrivalDate.split("t")[0])
+    console.log(flights)
+
+    
+    renderer.renderFlights(flights)
+});
 $('#container').on('click', '#submitIncome', async function () {
     submitTransaction("Income")
 });

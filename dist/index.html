@@ -17,23 +17,44 @@
   <div class="navbar">
   </div>
   <div id="container">
-
+     
   </div>
   <script id="rec-page-template" type="text/x-handlebars-template">
     <div class="box3 sb14">You saved <span id="savings"> {{savings}}$ </span> this month!<br>
       Choose goal to see what you can spent them on:
   </div>
     <div class="rec-selector-box">
-        <select class="browser-default">
+        <select class="goal-dropdown browser-default">
           <option value="" disabled selected>Choose your goal</option>
           {{#each favGoals}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
         </select>
     </div>
-    <div class="goal-suggestions-div">info from the api</div>
+    <div class="goal-suggestions-div"></div>
       
                 
+  </script>
+
+  <script id="flights-template" type="text/x-handlebars-template">
+    {{#each flights}}
+    <div id="flight-card">
+        <div id="col1">
+          <i class="fas fa-plane"></i>
+        </div>
+        <div id="col2">
+            <div>departureTime: <span id="flight-info">{{departureTime}}</span></div>
+            <div>flightDuration: <span id="flight-info">{{flightDuration}}</span></div>
+        </div>
+        <div id="col3">
+          <div>arrivalTime: <span id="flight-info">{{arrivalDate}}, {{arrivalTime}}</span></div>
+          <div>airline: <span id="flight-info">{{airline}}</span></div>
+        </div>
+        <div class="flight-price" id="col4">
+          {{price}}$
+        </div>
+      </div>
+    {{/each}}      
   </script>
 
   <script id="profile-page-template" type="text/x-handlebars-template">
@@ -56,6 +77,11 @@
         <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a car</a>
         {{else}}
         <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
+        {{/if}}
+        {{#if favGoals.Sport}}
+        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Go to a sports event</a>
+        {{else}}
+        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Go to a sports event</a>
         {{/if}}
       </div>
    
