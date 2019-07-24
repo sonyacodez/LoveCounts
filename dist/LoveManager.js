@@ -2,9 +2,6 @@ class LoveManager {
     constructor(allTransactions, allGoalOptions) {
         this.allTransactions = [];
         // this.allGoalOptions = [];
-        this.totalByType = {}
-
-
     }
     //sends a transaction data as POST request to the /expenses post route on the server
 
@@ -70,6 +67,25 @@ class LoveManager {
         return result;
     }
 
+    async getLastQuorterExpenses(coupleKey,month){
+        let curStartDate = moment(`2019-${month}-01`).format('LLLL');
+        let curEndDate = moment(`2019-${month}-31`).format('LLLL');
+        let curMonthResult = await $.get(`/thisMonthExpenses/${coupleKey}/${curStartDate}/${curEndDate}`)
+        
+        let prevMonth = month-1;
+        let prevStartDate = moment(`2019-${prevMonth}-01`).format('LLLL');
+        let prevEndDate = moment(`2019-${prevMonth}-31`).format('LLLL');
+        let prevMonthResult = await $.get(`/thisMonthExpenses/${coupleKey}/${prevStartDate}/${prevEndDate}`)
+
+        let firstMonth = month-2;
+        let firstStartDate = moment(`2019-${firstMonth}-01`).format('LLLL');
+        let firstEndDate = moment(`2019-${firstMonth}-31`).format('LLLL');
+        let firstMonthResult = await $.get(`/thisMonthExpenses/${coupleKey}/${firstStartDate}/${firstEndDate}`)
+
+        return (curMonthResult, prevMonthResult, firstMonthResult)
+    }
+
+
     async getSavings(coupleKey, month){
         let startDate = moment(`2019-${month}-01`).format('LLLL');
         let endDate = moment(`2019-${month}-31`).format('LLLL')
@@ -84,6 +100,27 @@ class LoveManager {
         let result = await $.get(`/travel/${destination}/${startDate}`)
         let flights = result.slice(0,10)
         return flights;
+    }
+
+    //for alert about going into debt feature
+
+    async checkDebt(transaction){
+        const transactionObject = {
+            type: transaction.type,
+            amount: transaction.amount, 
+            month: moment(transaction.date).month(),
+            coupleKey: transaction.coupleKey
+        }
+        let startDate = moment(`2019-${transactionObject.month}-01`).format('LLLL');
+        let endDate = moment(`2019-${transactionObject.month}-31`).format('LLLL')
+        let thisMonthTransactions = await $.get(`/thisMonthTransactions/${coupleKey}/${startDate}/${endDate}`)
+        const totalExpense = thisMonthTransactions.filter(r=>r.type === "Expense").map(e=>e.amount).reduce((a, b) => a + b, 0);
+        const totalIncome = thisMonthTransactions.filter(r=>r.type === "Income").map(e=>e.amount).reduce((a, b) => a + b, 0);
+        const curFinResult = totalIncome - totalExpense;
+        if(transactionObject.type === "Expense" & transactionObject.amount >curFinResult){
+            const debt = curFinResult - transactionObject.amount
+            return debt
+        }
     }
 
 
