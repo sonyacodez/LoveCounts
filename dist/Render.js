@@ -44,28 +44,24 @@ const Render = function () {
 
     const renderSportsEvents = function (events) {
         $(".goal-suggestions-div").empty()
+        $('#form-container').empty()
+
         $("#loading-gif").empty()
         const source = $('#events-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ events });
         // $('.goal-suggestions-div').append(newHTML);
-        $('#container').append(newHTML);
+        $('#form-container').append(newHTML);
     }
-    // const renderSportsEvents = function (flights) {
-    //     // $(".goal-suggestions-div").empty()
-    //     // $("#loading-gif").empty()
 
-    //     // const source = $('#flights-template').html();
-    //     // const template = Handlebars.compile(source);
-    //     // let newHTML = template({ flights });
-    //     // // $('.goal-suggestions-div').append(newHTML);
-    //     // $('#container').append(newHTML);
-    // }
     const renderLoading= function(){
-        $('#container').append(`<div id="loading-gif"><img src="../pics/tenor.gif"></div>`)
+        $('#form-container').append(`<div id="loading-gif"><img src="../pics/tenor.gif"></div>`)
     }
+
     const renderRecTravelForm = function (favGoals, savings) {
-            $('#container').append(
+        $('#form-container').empty()
+
+            $('#form-container').append(
             `<div id="flight-search-form">
                 <div class="travel-form-item row">
                     <div class="input ">
@@ -82,8 +78,7 @@ const Render = function () {
                 <div id="searchFlightBtn">
                     <a id="searchFlight" class="waves-effect waves-light btn">Search</a>
                 </div>
-            </div>
-            `);
+            </div>`);
     }
 
     const renderGoalRecommendations = function () {
