@@ -70,8 +70,8 @@ class LoveManager {
         let curStartDate = moment(`2019-${firstMonth}-01`).format('LLLL');
         let curEndDate = moment(`2019-${month}-31`).format('LLLL');
         let result = await $.get(`/thisMonthExpenses/${coupleKey}/${curStartDate}/${curEndDate}`)
-
-        return (result)
+        console.log(result)
+        return result
     }
 
 
