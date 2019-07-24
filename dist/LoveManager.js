@@ -108,12 +108,12 @@ class LoveManager {
         const transactionObject = {
             type: transaction.type,
             amount: transaction.amount, 
-            month: moment(transaction.date).month(),
+            month: moment(transaction.date).month()+1,
             coupleKey: transaction.coupleKey
         }
         let startDate = moment(`2019-${transactionObject.month}-01`).format('LLLL');
         let endDate = moment(`2019-${transactionObject.month}-31`).format('LLLL')
-        let thisMonthTransactions = await $.get(`/thisMonthTransactions/${coupleKey}/${startDate}/${endDate}`)
+        let thisMonthTransactions = await $.get(`/thisMonthTransactions/${transactionObject.coupleKey}/${startDate}/${endDate}`)
         const totalExpense = thisMonthTransactions.filter(r=>r.type === "Expense").map(e=>e.amount).reduce((a, b) => a + b, 0);
         const totalIncome = thisMonthTransactions.filter(r=>r.type === "Income").map(e=>e.amount).reduce((a, b) => a + b, 0);
         const curFinResult = totalIncome - totalExpense;
