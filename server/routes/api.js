@@ -109,22 +109,34 @@ router.get(`/thisMonthExpenses/:coupleKey/:startDate/:endDate`, (req,res)=>{
         })
 })
 
-const airportIndex = [
-   {city: "Paris", index: "PAR"},
-   {city: "Madrid", index: "MAD"},
-   {city: "Moscow", index: "MOW"},
-   {city: "Berlin", index: "BER"}
-]
+router.get(`/thisMonthTransactions/:coupleKey/:startDate/:endDate`, (req,res)=>{
+    const coupleKey = req.params.coupleKey
+    const startDate = moment(req.params.startDate)
+    const endDate = moment(req.params.endDate)
+    UserCouple.findById(coupleKey)
+        .populate('transactions')
+        .exec((err,thisUser)=>{
+            const transactionsThisMonthOnly = thisUser.transactions.filter(e => moment(e.date).isBetween(startDate, endDate))
+            res.send(transactionsThisMonthOnly)
+        })
+})
 
-url = 'https://developer.goibibo.com/api/search/?app_key=ce9c9916342908ec12173f3996baecd6&app_id=92460641&format=json&source=TLV&dateofdeparture=20190825&seatingclass=E&adults=2&children=0&infants=0&counter=0&destination='
+// const airportIndex = [
+//    {city: "Paris", index: "PAR"},
+//    {city: "Madrid", index: "MAD"},
+//    {city: "Moscow", index: "MOW"},
+//    {city: "Berlin", index: "BER"}
+// ]
 
-router.get('/recs/:destination', function (req, res){
-   let destination = req.params.destination
-   let index = airportIndex.find(i=>i.city===destination).index
-   request(url+index, function(err, response, body){
-       const getBody = JSON.parse(response.body || "{}")
-       res.send(getBody)
-})})
+// url = 'https://developer.goibibo.com/api/search/?app_key=ce9c9916342908ec12173f3996baecd6&app_id=92460641&format=json&source=TLV&dateofdeparture=20190825&seatingclass=E&adults=2&children=0&infants=0&counter=0&destination='
+
+// router.get('/recs/:destination', function (req, res){
+//    let destination = req.params.destination
+//    let index = airportIndex.find(i=>i.city===destination).index
+//    request(url+index, function(err, response, body){
+//        const getBody = JSON.parse(response.body || "{}")
+//        res.send(getBody)
+// })})
 // router.get('/car/:address/:citystatezip', (req,res)=>{
 //     const APIKey = "X1-ZWz17r8v83e58r_8s1xw"
 //     const address = req.params.address
