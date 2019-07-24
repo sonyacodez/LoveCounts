@@ -89,6 +89,7 @@ const Render = function () {
         $('#container').append(`<canvas id="myChart"></canvas>`);
         renderBarChart(categories, amount)
         // renderPieChart(categories, amount)
+
         $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span> this month!<br>
                                     check Recommendations page to see what you can spent them on
                                 </div>`)
