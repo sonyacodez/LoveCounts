@@ -72,12 +72,16 @@ class LoveManager {
         return result;
     }
 
-    // async getSavings(coupleKey, month){
-    //     let startDate = moment(`2019-${month}-01`).format('LLLL');
-    //     let endDate = moment(`2019-${month}-31`).format('LLLL')
-    //     let result = await $.get(`/thisMonthTransactions/${coupleKey}/${startDate}/${endDate}`)
-    //     return result
-    // }
+    async getSavings(coupleKey, month){
+        let startDate = moment(`2019-${month}-01`).format('LLLL');
+        let endDate = moment(`2019-${month}-31`).format('LLLL')
+        let result = await $.get(`/thisMonthTransactions/${coupleKey}/${startDate}/${endDate}`)
+        const totalExpense = result.filter(r=>r.type === "Expense").map(e=>e.amount).reduce((a, b) => a + b, 0);
+        const totalIncome = result.filter(r=>r.type === "Income").map(e=>e.amount).reduce((a, b) => a + b, 0);
+        const savings = totalIncome - totalExpense;
+        return savings;
+    }
+
 
     // async getPartner(userData){
     //     let result = await $.get('partner/${userData.userName}`)
