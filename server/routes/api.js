@@ -147,4 +147,22 @@ router.get(`/travel/:destination/:startDate`, (req, res)=>{
     })
 })
 
+router.get(`/sportEvents`, (req, res)=>{
+    request.get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=utaQBvfKItKAf5gjW4pD86XDIyUV1fto`, (err, response)=>{
+        const getEvents = JSON.parse(response.body || "[]")._embedded.events
+        const getSportEvents = getEvents.filter(e => e.classifications[0].segment.name === "Sports")
+        const mySportEvents = getSportEvents.map(e => {
+            return {
+                eventName: e.name,
+                eventURL: e.url,
+                eventImage: e.images[0].url,
+                eventDateStart: e.dates.start.localDate,
+                eventSportType: e.classifications[0].genre.name,
+                eventID: e.id
+            }
+        })
+        res.send(mySportEvents)
+    })
+})
+
 module.exports = router
