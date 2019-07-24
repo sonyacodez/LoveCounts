@@ -10,12 +10,14 @@ const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
      await manager.getTransactions(coupleKey)
      const expenses =manager.allTransactions
-     console.log("expenses: ->")
-     console.log(expenses)
-
+    //  let currentDate = new Date();
+    //  console.log(currentTime)
+     let currentDate=moment(new Date()).format("YYYY-MM-DD")
+     console.log(currentDate)
+// currentDate=new Date().toDateInputValue();
     expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
     expenses.forEach(e => {e.date=moment(e.date).format("MMM Do YYYY")  })
-    renderer.renderTransactionPage(expenses)
+    renderer.renderTransactionPage(expenses, currentDate)
 }
 
 $('.navbar').on('click', 'li', async function () {
