@@ -28,7 +28,6 @@ router.post('/transactions', function(req,res){
     })
     newExpense.save()
     UserCouple.findById(coupleKey, (err,response)=>{
-        console.log(UserCouple)
         response.transactions.push(newExpense)
         response.save()
         res.end()
@@ -147,5 +146,38 @@ router.get(`/travel/:destination/:startDate`, (req, res)=>{
         res.send(myFlights)
     })
 })
+
+// var bby = require('bestbuy')('YourAPIKey');
+// bby.products('manufacturer=canon&salePrice<1000',{show:'sku,name,salePrice'}).then(function(data){
+//   console.log(data);
+// });
+
+// https://api.londontheatredirect.com/rest/v2/Events/{id}/AvailableTickets?dateFrom={dateFrom}&dateTo={dateTo}&nbOfTickets={nbOfTickets}
+
+// router.get(`/travel/:destination/:startDate`, (req, res)=>{
+//     const destination = req.params.destination
+//     const startDate = req.params.startDate
+//     const airportIndex = [
+//         {city: "Paris", index: "PAR"},
+//         {city: "Madrid", index: "MAD"},
+//         {city: "Moscow", index: "MOW"},
+//         {city: "Berlin", index: "BER"}
+//     ]
+//     const airportName = airportIndex.find(i => i.city === destination).index
+//     request.get(`https://api.londontheatredirect.com/rest/v2/Events/${id}/AvailableTickets?dateFrom=${dateFrom}&dateTo=${dateTo}&nbOfTickets=${nbOfTickets}`, (err, response)=>{
+//         const getFlights = JSON.parse(response.body || "{}").data.onwardflights
+//         const myFlights = getFlights.map(f => {
+//             return {
+//                 departureTime: f.deptime,
+//                 arrivalTime: f.arrtime,
+//                 arrivalDate: f.arrdate,
+//                 flightDuration: f.duration,
+//                 airline: f.airline,
+//                 price: f.fare.totalfare * 0.014
+//             }
+//         })
+//         res.send(myFlights)
+//     })
+// })
 
 module.exports = router
