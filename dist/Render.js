@@ -37,10 +37,10 @@ const Render = function () {
     }
 
     const renderReportPage = function (categories, amount) {
-        
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
         renderChart(categories, amount)
+        $('#container').append(`<a id="compareMonthly" class="waves-effect waves-light btn">Compare Monthly Expenses</a>`);
         $('#container').append(`<div class="box3 sb14">you saved 300$ this month!<br>
                                     check Recommendations page to see what you can spent them on
                                 </div>`)
