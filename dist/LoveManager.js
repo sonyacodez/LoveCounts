@@ -49,7 +49,6 @@ class LoveManager {
             url: `/transaction/${coupleKey}/${transactionKey}`,
             type: 'DELETE',
             success: function() {
-                "transaction DELETE complete"
             }
         })
     }
@@ -59,7 +58,6 @@ class LoveManager {
             url: `/goal/${coupleKey}/${goalName}`,
             type: 'DELETE',
             success: function() {
-                "favourite goal DELETE complete"
             }
         })
     }
@@ -82,6 +80,12 @@ class LoveManager {
         return savings;
     }
 
+    async getFlights(destination, startDate){
+        let result = await $.get(`/travel/${destination}/${startDate}`)
+        let flights = result.slice(0,10)
+        return flights;
+    }
+
 
     // async getPartner(userData){
     //     let result = await $.get('partner/${userData.userName}`)
@@ -98,3 +102,4 @@ class LoveManager {
     //     }
     // }
 }
+

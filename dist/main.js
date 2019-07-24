@@ -3,6 +3,7 @@ const manager = new LoveManager()
 let coupleKey = '5d370f800f89019d266989ec' //Liat's key
 const userName = "Sonya",partnerName="Nadav"
 
+
 // let activePage="Recommendations"
 
 
