@@ -8,28 +8,101 @@
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans&display=swap" rel="stylesheet">
   <title>Love Counts</title>
 </head>
 
 <body>
   <div class="navbar">
   </div>
-
-
-
   <div id="container">
+
   </div>
+  <script id="rec-page-template" type="text/x-handlebars-template">
+    <div class="input-field col s12">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Select</label>
+      </div>
+    
+      <div class="input-field col s12">
+        <select multiple>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Multiple Select</label>
+      </div>
+    
+      <div class="input-field col s12">
+        <select>
+          <optgroup label="team 1">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+          </optgroup>
+          <optgroup label="team 2">
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+          </optgroup>
+        </select>
+        <label>Optgroups</label>
+      </div>
+    
+      <div class="input-field col s12 m6">
+        <select class="icons">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="" data-icon="images/sample-1.jpg">example 1</option>
+          <option value="" data-icon="images/office.jpg">example 2</option>
+          <option value="" data-icon="images/yuna.jpg">example 3</option>
+        </select>
+        <label>Images in select</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <select class="icons">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="" data-icon="images/sample-1.jpg" class="left">example 1</option>
+          <option value="" data-icon="images/office.jpg" class="left">example 2</option>
+          <option value="" data-icon="images/yuna.jpg" class="left">example 3</option>
+        </select>
+        <label>Images in select</label>
+      </div>
+    
+      <label>Browser Select</label>
+      <select class="browser-default">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+                
+  </script>
 
   <script id="profile-page-template" type="text/x-handlebars-template">
     <div id="profile-page">
     <div id="profile-header">Hi {{userName}}!</div>
     <div id="profile-choose">Choose your favorites goals:</div>
     <div id="goals-box">
-        <a class="waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Travel</a>
-        <a class="waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a house</a>
-        <a class="waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
-    </div>
+        {{#if favGoals.Travel}}
+        <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Travel</a>
+        {{else}}
+        <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Travel</a>
+        {{/if}}
+        {{#if favGoals.House}}
+        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a house</a>
+        {{else}}
+        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a house</a>
+        {{/if}}
+        {{#if favGoals.Car}}
+        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a car</a>
+        {{else}}
+        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
+{{/if}}
+      </div>
    
     <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
   </div>
@@ -38,7 +111,7 @@
   <script id="navbar-template" type="text/x-handlebars-template">
       <nav>
           <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Logo</a>
+            <a class="brand-logo center"><img id="logo" src="../pics/LogoMakr_2Khqzp.png"></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
               <li id="transactions-tab"><a>Transactions</a></li>
               <li id="reports-tab"><a>Reports</a></li>
@@ -125,6 +198,7 @@
   
       </div>
       </div>
+
       <div class="divider"></div>
 
       <div class="transactions-list">
@@ -133,10 +207,10 @@
             <thead>
               <tr>
                   <th></th>
-                  <th>category</th>
-                  <th>amount</th>
-                  <th>date</th>
-                  <th>comment</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Comment</th>
                   <th></th>
               </tr>
             </thead>
@@ -164,6 +238,7 @@
   <script src="./jquery/dist/jquery.js"></script>
   <script src="./handlebars/dist/handlebars.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="Render.js"></script>

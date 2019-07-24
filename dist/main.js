@@ -1,6 +1,7 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d370f800f89019d266989ec', userName="Sonya"
+let coupleKey = '5d370f800f89019d266989ec' //Liat's key
+const userName="Sonya"
 let activePage="Recommendations"
 
 const loadTransactionPage = async function () {
@@ -17,9 +18,39 @@ $('.navbar').on('click', 'li', async function () {
     const tabName = $(this).closest('li').text()
     console.log(tabName)
     if (tabName==="Profile"){
-        renderer.renderProfilePage(userName)
+        loadProfilePage()
+    }else if(tabName==="Reports"){
+        renderer.renderReportPage()
+    }else if(tabName==="Transactions"){
+        loadTransactionPage()
+    }else if(tabName==="Recommendations"){
+        // rec-page-template
     }
 });
+
+const loadProfilePage = async function () {
+    console.log("loadProfilePage")
+    const favGoals = await manager.getGoals(coupleKey)
+        console.log(favGoals)
+        let goalObj={}
+        favGoals.forEach(g=>goalObj[g]=true)
+        renderer.renderProfilePage(userName, goalObj)
+}
+
+$('#container').on('click', '.fav-item', async function () {
+    console.log("fav-item onclick")
+    const favGoal = $(this).closest('a').attr('data-id')
+    console.log(favGoal)
+    await manager.addFavGoal({
+        coupleKey: coupleKey,
+        goalName: favGoal
+    })
+    loadProfilePage()
+        // favGoal)
+    // submitIncome()
+    // submitTransaction("Income")
+});
+
 $('#container').on('click', '#submitIncome', async function () {
     console.log("submitIncome onClick")
     // submitIncome()
@@ -58,8 +89,24 @@ const submitTransaction = async function (type) {
     console.log(comment)
     console.log(category)
     manager.addTransaction(tranactionInfo)
-
+    loadTransactionPage()
 }
+
+
+
+
+
+$("#renderBtn").click(
+    function () {
+        data = [20000, 14000, 12000, 15000, 18000, 19000, 22000];
+        labels =  [ 'Red',
+        'Yellow',
+        'Blue',"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+        // renderChart(data, labels);
+        renderer.renderReportPage()
+    }
+);
+
 
 renderer.renderNavbar()
 loadTransactionPage()
