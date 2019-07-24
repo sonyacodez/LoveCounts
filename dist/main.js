@@ -1,7 +1,13 @@
 const renderer = Render()
 const manager = new LoveManager()
+<<<<<<< HEAD
 let coupleKey = '5d3827185aabb537cf4007a3' //Sonya's key
 const userName = "Sonya"
+=======
+let coupleKey = '5d370f800f89019d266989ec' //Liat's key
+const userName = "Sonya",partnerName="Nadav"
+
+>>>>>>> master
 
 const loadTransactionPage = async function () {
     await manager.getTransactions(coupleKey)
@@ -17,8 +23,9 @@ $('.navbar').on('click', 'li', async function () {
     if (tabName === "Profile") {
         loadProfilePage()
     } else if (tabName === "Reports") {
-        let thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
-        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount)
+        const thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
+        const savings = await manager.getSavings(coupleKey, "07")
+        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount, savings)
     } else if (tabName === "Transactions") {
         loadTransactionPage()
     } else if (tabName === "Recommendations") {
@@ -27,7 +34,11 @@ $('.navbar').on('click', 'li', async function () {
 });
 const loadRecommendationsPage = async function () {
     const favGoals = await manager.getGoals(coupleKey)
-    renderer.renderRecPage(favGoals)
+    const savings = await manager.getSavings(coupleKey, "07")
+
+    
+    renderer.renderRecPage(favGoals,savings)
+    // renderer.renderLoading()
 
 }
 
@@ -37,6 +48,35 @@ const loadProfilePage = async function () {
     favGoals.forEach(g => goalObj[g] = true)
     renderer.renderProfilePage(userName, goalObj)
 }
+
+const loadSportsEvents = async function () {
+    console.log("loadSportsEvents")
+    // const favGoals = await manager.getGoals(coupleKey)
+    // let goalObj = {}
+    // favGoals.forEach(g => goalObj[g] = true)
+    // renderer.renderProfilePage(userName, goalObj)
+    const events = await manager.getSportEvents()
+    console.log(events)
+    renderer.renderSportsEvents(events)
+
+}
+
+$('#container').on('change', '.goal-dropdown', async function () {
+    const val = this.value;
+    console.log(val)
+    if (val==="Travel"){
+        renderer.renderRecTravelForm()
+    }else if(val==="Sport"){
+        loadSportsEvents()
+    }
+    // console.log("picked!!!!!")
+    // var end = this.value;
+    // console.log(end)
+    // var firstDropVal = $('#pick').val();
+});
+
+
+
 
 $('#container').on('click', '.fav-item', async function () {
     const favGoal = $(this).closest('a').attr('data-id')
@@ -56,6 +96,27 @@ $('#container').on('click', '.fav-item', async function () {
         loadProfilePage()
     }
 });
+
+$('#container').on('click', '#searchFlightBtn', async function () {
+    console.log("search")
+    const destination = $(`#destination`).val()
+    console.log(destination)
+    // const departureDate = $(`#departure-date`).val()
+    // console.log(departureDate)
+    const departureDate = moment($(`#departure-date`).val()).format("YYYYMMDD")
+    console.log(departureDate)
+    renderer.renderLoading()
+    const flights= await manager.getFlights(destination,departureDate)
+    flights.forEach(f=> f.price=Math.round(f.price))
+    flights.forEach(f=> f.arrivalDate= f.arrivalDate.split("t")[0])
+    console.log(flights)
+
+    while(flights.length<1){
+
+    }
+    renderer.renderFlights(flights)
+});
+
 
 $('#container').on('click', '#submitIncome', async function () {
     submitTransaction("Income")
