@@ -34,6 +34,8 @@ const Render = function () {
 
     const renderFlights = function (flights) {
         $(".goal-suggestions-div").empty()
+        $("#loading-gif").empty()
+
         const source = $('#flights-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ flights });
@@ -42,7 +44,9 @@ const Render = function () {
 
         
     }
-    
+    const renderLoading= function(){
+        $('#container').append(`<div id="loading-gif"><img src="../pics/tenor.gif"></div>`)
+    }
     const renderRecTravelForm = function (favGoals, savings) {
         // $("#container").empty()
         // $('.rec-selector-box').append(
@@ -144,7 +148,8 @@ const Render = function () {
         renderGoalRecommendations,
         renderReportPage,
         renderRecTravelForm,
-        renderFlights
+        renderFlights,
+        renderLoading
     }
 }
 

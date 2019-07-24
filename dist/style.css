@@ -205,7 +205,7 @@ font-weight: 900;
 }
 .flight-price{
     font-weight: 900;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 #flight-search-form{
@@ -226,3 +226,13 @@ font-weight: 900;
 #searchFlightBtn{
     flex:1;
 }
+#loading-gif{
+    /* height: 50px; */
+    /* width: 100px;*/
+    /* margin-left: 350px; */
+    /* left:50%;    */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

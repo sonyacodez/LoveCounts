@@ -37,6 +37,7 @@ const loadRecommendationsPage = async function () {
 
     
     renderer.renderRecPage(favGoals,savings)
+    // renderer.renderLoading()
 
 }
 
@@ -91,12 +92,15 @@ $('#container').on('click', '#searchFlightBtn', async function () {
     // console.log(departureDate)
     const departureDate = moment($(`#departure-date`).val()).format("YYYYMMDD")
     console.log(departureDate)
+    renderer.renderLoading()
     const flights= await manager.getFlights(destination,departureDate)
     flights.forEach(f=> f.price=Math.round(f.price))
     flights.forEach(f=> f.arrivalDate= f.arrivalDate.split("t")[0])
     console.log(flights)
 
-    
+    while(flights.length<1){
+
+    }
     renderer.renderFlights(flights)
 });
 $('#container').on('click', '#submitIncome', async function () {
