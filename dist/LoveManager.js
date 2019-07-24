@@ -1,7 +1,7 @@
 class LoveManager {
     constructor(allTransactions, allGoalOptions) {
         this.allTransactions = [];
-        this.allGoalOptions=[]
+        this.allGoalOptions = []
     }
     //sends a transaction data as POST request to the /expenses post route on the server
 
@@ -61,6 +61,14 @@ class LoveManager {
         })
     }
     
+
+    async getThisMonthExpenses(coupleKey,month){
+        let startDate = moment(`2019-${month}-01`).format('LLLL');
+        let endDate = moment(`2019-${month}-31`).format('LLLL')
+        let result = await $.get(`/thisMonthExpenses/${coupleKey}/${startDate}/${endDate}`)
+        return result
+    }
+
     // async getPartner(userData){
     //     let result = await $.get('partner/${userData.userName}`)
     //     return result.partnerName
@@ -76,3 +84,7 @@ class LoveManager {
     //     }
     // }
 }
+
+
+const lManager = new LoveManager();
+lManager.getThisMonthExpenses()
