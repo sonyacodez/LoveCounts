@@ -43,15 +43,37 @@
           <i class="fas fa-plane"></i>
         </div>
         <div id="col2">
-            <div>departureTime: <span id="flight-info">{{departureTime}}</span></div>
-            <div>flightDuration: <span id="flight-info">{{flightDuration}}</span></div>
+            <div>Departure Time: <span id="flight-info">{{departureTime}}</span></div>
+            <div>Flight Duration: <span id="flight-info">{{flightDuration}}</span></div>
         </div>
         <div id="col3">
-          <div>arrivalTime: <span id="flight-info">{{arrivalDate}}, {{arrivalTime}}</span></div>
-          <div>airline: <span id="flight-info">{{airline}}</span></div>
+          <div>Arrival Time: <span id="flight-info">{{arrivalDate}}, {{arrivalTime}}</span></div>
+          <div>Airline: <span id="flight-info">{{airline}}</span></div>
         </div>
         <div class="flight-price" id="col4">
           {{price}}$
+        </div>
+      </div>
+    {{/each}}      
+  </script>
+
+  <script id="events-template" type="text/x-handlebars-template">
+    {{#each events}}
+    <div id="event-card">
+        <div id="col1">
+          <img id="eventImage" src="{{eventImage}}">
+        </div>
+        <div id="col2">
+            <div>{{eventName}}</div>
+        </div>
+        <div id="col3">
+            <div>{{eventSportType}}</div>
+        </div>
+        <div id="col4">
+          <div>{{eventDateStart}}</div>
+        </div>
+        <div id="col5"><a href="{{eventURL}}">Click here to book now!</a>
+        </div>
         </div>
       </div>
     {{/each}}      

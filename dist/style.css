@@ -236,3 +236,19 @@ font-weight: 900;
     justify-content: center;
 }
 
+#event-card{
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+}
+
+#eventImage{
+    height: 80px;
+    width: 80px;
+}

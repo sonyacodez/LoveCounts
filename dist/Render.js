@@ -35,43 +35,38 @@ const Render = function () {
     const renderFlights = function (flights) {
         $(".goal-suggestions-div").empty()
         $("#loading-gif").empty()
-
         const source = $('#flights-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ flights });
         // $('.goal-suggestions-div').append(newHTML);
         $('#container').append(newHTML);
-
-        
     }
+
+    const renderSportsEvents = function (events) {
+        $(".goal-suggestions-div").empty()
+        $("#loading-gif").empty()
+        const source = $('#events-template').html();
+        const template = Handlebars.compile(source);
+        let newHTML = template({ events });
+        // $('.goal-suggestions-div').append(newHTML);
+        $('#container').append(newHTML);
+    }
+    // const renderSportsEvents = function (flights) {
+    //     // $(".goal-suggestions-div").empty()
+    //     // $("#loading-gif").empty()
+
+    //     // const source = $('#flights-template').html();
+    //     // const template = Handlebars.compile(source);
+    //     // let newHTML = template({ flights });
+    //     // // $('.goal-suggestions-div').append(newHTML);
+    //     // $('#container').append(newHTML);
+    // }
     const renderLoading= function(){
         $('#container').append(`<div id="loading-gif"><img src="../pics/tenor.gif"></div>`)
     }
     const renderRecTravelForm = function (favGoals, savings) {
-        // $("#container").empty()
-        // $('.rec-selector-box').append(
-            // `
-            // <div id="flight-search-form">
-            //     <span id="box1">
-            //     <div class="row">
-
-            //              <div class="input ">
-            //                  <input id="destination" type="text" class="validate">
-            //                  <label for="Destination">Destination</label>
-            //              </div>
-            //          </div>
-            //     </span>
-            //     <span id="box2">sdflksaa</span>
-            //     <span id="box3">sssa</span>
-
-            // </div>
-            // `);
-           
             $('#container').append(
-
-            `
-            
-            <div id="flight-search-form">
+            `<div id="flight-search-form">
                 <div class="travel-form-item row">
                     <div class="input ">
                         <input id="destination" type="text" class="validate">
@@ -89,12 +84,6 @@ const Render = function () {
                 </div>
             </div>
             `);
-
-
-        // const source = $('#rec-page-template').html();
-        // const template = Handlebars.compile(source);
-        // let newHTML = template({ favGoals ,savings});
-        // $('#container').append(newHTML);
     }
 
     const renderGoalRecommendations = function () {
@@ -149,7 +138,8 @@ const Render = function () {
         renderReportPage,
         renderRecTravelForm,
         renderFlights,
-        renderLoading
+        renderLoading,
+        renderSportsEvents
     }
 }
 

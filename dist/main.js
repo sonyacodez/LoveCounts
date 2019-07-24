@@ -44,20 +44,32 @@ const loadProfilePage = async function () {
     renderer.renderProfilePage(userName, goalObj)
 }
 
-const loadFlights = async function () {
-    const favGoals = await manager.getGoals(coupleKey)
-    let goalObj = {}
-    favGoals.forEach(g => goalObj[g] = true)
-    renderer.renderProfilePage(userName, goalObj)
+const loadSportsEvents = async function () {
+    console.log("loadSportsEvents")
+    // const favGoals = await manager.getGoals(coupleKey)
+    // let goalObj = {}
+    // favGoals.forEach(g => goalObj[g] = true)
+    // renderer.renderProfilePage(userName, goalObj)
+    const events = await manager.getSportEvents()
+    console.log(events)
+    renderer.renderSportsEvents(events)
+
 }
 
 $('#container').on('change', '.goal-dropdown', async function () {
-    console.log("picked!!!!!")
-    var end = this.value;
-    console.log(end)
-    renderer.renderRecTravelForm()
+    const val = this.value;
+    console.log(val)
+    if (val==="Travel"){
+        renderer.renderRecTravelForm()
+    }else if(val==="Sport"){
+        loadSportsEvents()
+    }
+    // console.log("picked!!!!!")
+    // var end = this.value;
+    // console.log(end)
     // var firstDropVal = $('#pick').val();
 });
+
 
 
 
@@ -99,6 +111,8 @@ $('#container').on('click', '#searchFlightBtn', async function () {
     }
     renderer.renderFlights(flights)
 });
+
+
 $('#container').on('click', '#submitIncome', async function () {
     submitTransaction("Income")
 });
