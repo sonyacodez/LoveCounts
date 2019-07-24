@@ -9,6 +9,9 @@ const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
      await manager.getTransactions(coupleKey)
      const expenses =manager.allTransactions
+     console.log("expenses: ->")
+     console.log(expenses)
+
     expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
     expenses.forEach(e => {e.date=moment(e.date).format("MMM Do YYYY")  })
     renderer.renderTransactionPage(expenses)
@@ -86,11 +89,13 @@ $('#container').on('click', '#submitExpense', async function () {
     submitTransaction("Expense")
 
 });
+
 $('#container').on('click', '#delete-transaction', function () {
     console.log("delete-transaction onClick")
-    const item = $(this).closest('#transaction-table-row').find('#category').text()
-    console.log(item)
-    // deleteTransaction()
+    const transactionKey = $(this).closest('#transaction-table-row').attr('data-id')//.text()
+    console.log(transactionKey)
+    manager.removeTransaction(coupleKey,transactionKey)
+    loadTransactionPage()
 });
 
 const submitTransaction = async function (type) {
@@ -107,28 +112,9 @@ const submitTransaction = async function (type) {
         date: date,
         comment: comment
     }
-    console.log(amount)
-    console.log(date)
-    console.log(comment)
-    console.log(category)
     manager.addTransaction(tranactionInfo)
     loadTransactionPage()
 }
-
-
-
-
-
-$("#renderBtn").click(
-    function () {
-        data = [20000, 14000, 12000, 15000, 18000, 19000, 22000];
-        labels =  [ 'Red',
-        'Yellow',
-        'Blue',"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-        // renderChart(data, labels);
-        renderer.renderReportPage()
-    }
-);
 
 
 renderer.renderNavbar()

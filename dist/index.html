@@ -168,7 +168,7 @@
             </thead>
             <tbody>
                 {{#each expenses}}
-                <tr id="transaction-table-row">
+                <tr id="transaction-table-row" data-id="{{_id}}">
                   {{#if type}}
                   <td><i class="fas fa-arrow-circle-down"></i></td>
                   {{else}}
