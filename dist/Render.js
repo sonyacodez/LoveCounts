@@ -5,7 +5,7 @@ const Render = function () {
         $("#container").empty()
         const source = $('#transaction-template').html();
         const template = Handlebars.compile(source);
-        let newHTML = template({ expenses,currentDate });
+        let newHTML = template({ expenses, currentDate });
         $('#container').append(newHTML);
     }
 
@@ -17,39 +17,14 @@ const Render = function () {
         $('.navbar').append(newHTML);
     }
     const renderProfilePage = function (userName, favGoals) {
-        console.log("renderProfilePage")
         $("#container").empty()
         const source = $('#profile-page-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ userName, favGoals });
         $('#container').append(newHTML);
-
-        // favGoals.forEach(e => {
-        //     // $(thiss).closest(".cityBox").find( ".saveDelete" ).append( "<div class='remove'><i class='fas fa-heart'></i></div>" );
-        //     const goal1 = $(this).closest('a').val()//.getAttribute('data-id')//.attr('data-id')
-        //     console.log(goal1)
-        // });
-
     }
-    //     const renderProfilePage = function (userName, favGoals) {
-    //         $("#container").empty()
-    //         $('#container').append(`
-    //         <div id="profile-page">
-    //     <div id="profile-header">Hi {{userName}}!!</div>
-    //     <div id="profile-choose">Choose your favorites goals:</div>
-    //     <div id="goals-box">
-    //         <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Travel</a>
-    //          <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
-    //       </div>
-
-    //     <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
-    //   </div>
-    // `);
-
-    // }
 
     const renderRecPage = function (favGoals) {
-        // goalOptions = []
         $("#container").empty()
         const source = $('#rec-page-template').html();
         const template = Handlebars.compile(source);
@@ -61,22 +36,16 @@ const Render = function () {
         //not implemented yet
     }
 
-    const renderReportPage = function (categories,amount) {
-        console.log("#categories:")
-        console.log(categories)//lables
-        console.log("#amount:")
-        console.log(amount)
+    const renderReportPage = function (categories, amount) {
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
-        renderChart(categories,amount)
+        renderChart(categories, amount)
         $('#container').append(`<div class="box3 sb14">you saved 300$ this month!<br>
                                     check Recommendations page to see what you can spent them on
                                 </div>`)
-
     }
 
-    //needs to recive 2 arrays
-    function renderChart( labels,data) {
+    function renderChart(labels, data) {
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',
@@ -84,8 +53,8 @@ const Render = function () {
                 labels: labels,
                 datasets: [{
                     label: "Exspenses",
-                    backgroundColor: ["#f1c40f","#9b59b6","#fd79a8", "#e67e22","#27ae60","#2980b9","#778beb","#16a085","#7ed6df"],
-                    data:data
+                    backgroundColor: ["#f1c40f", "#9b59b6", "#fd79a8", "#e67e22", "#27ae60", "#2980b9", "#778beb", "#16a085", "#7ed6df"],
+                    data: data
                 }]
             },
             options: {
