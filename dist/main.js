@@ -4,10 +4,6 @@ let coupleKey = '5d370f800f89019d266989ec' //Liat's key
 const userName = "Sonya",partnerName="Nadav"
 
 
-// let activePage="Recommendations"
-
-
-
 const loadTransactionPage = async function () {
     await manager.getTransactions(coupleKey)
     const expenses = manager.allTransactions
