@@ -17,10 +17,7 @@ padding-right: 60px;
 align-content: center;
 align-items: center;
 }
-.transaction-form #submitIncome{
-    align-self: center;
-    margin: auto;
-}
+
 #formHeader{
     font-size: 25px;
     font-weight: 900;
@@ -105,7 +102,7 @@ height: 63px;
     align-content: center;
     align-self: center;
     margin: auto;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-bottom: 30px;
 
 }
@@ -127,15 +124,18 @@ height: 63px;
 }
 .box3 {
     width: 500px;
-    margin: 50px auto;
+    margin: 30px auto;
     border-radius: 15px;
-    background: #00bfb6;
+    background:#64b5f6;
+     /* #00bfb6; */
     color: #fff;
     padding: 20px;
     text-align: center;
     /* font-weight: 900; */
     /* font-family: arial; */
     position: relative;
+    font-size: 18px;
+    margin-bottom: 5px;
   }
   .sb14:before {
     content: "";
@@ -143,9 +143,30 @@ height: 63px;
     height: 0px;
     position: absolute;
     border-left: 15px solid transparent;
-    border-right: 15px solid #00bfb6;
-    border-top: 15px solid #00bfb6;
+    border-right: 15px solid #64b5f6;
+    border-top: 15px solid #64b5f6;
     border-bottom: 15px solid transparent;
     left: -16px;
     top: 0px;
   }  
+#savings{
+    font-size: 25px;
+    font-weight: 900
+}
+
+#submitBtn{
+    /* background-color: aqua; */
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#love-counts-gif{
+    position: relative;
+    left: 30px;
+}
+/* #submitExpense{
+    color:black;
+    text-align: end;
+   
+} */

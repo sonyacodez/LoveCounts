@@ -1,7 +1,7 @@
 const renderer = Render()
 const manager = new LoveManager()
 let coupleKey = '5d370f800f89019d266989ec' //Liat's key
-const userName = "Sonya"
+const userName = "Sonya",partnerName="Nadav"
 
 // let activePage="Recommendations"
 
@@ -21,8 +21,9 @@ $('.navbar').on('click', 'li', async function () {
     if (tabName === "Profile") {
         loadProfilePage()
     } else if (tabName === "Reports") {
-        let thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
-        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount)
+        const thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
+        const savings = await manager.getSavings(coupleKey, "07")
+        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount, savings)
     } else if (tabName === "Transactions") {
         loadTransactionPage()
     } else if (tabName === "Recommendations") {
@@ -31,7 +32,8 @@ $('.navbar').on('click', 'li', async function () {
 });
 const loadRecommendationsPage = async function () {
     const favGoals = await manager.getGoals(coupleKey)
-    renderer.renderRecPage(favGoals)
+    const savings = await manager.getSavings(coupleKey, "07")
+    renderer.renderRecPage(favGoals,savings)
 
 }
 
