@@ -20,7 +20,7 @@ const Transaction = require('./server/models/Transaction')
 //     type: "Expense",
 //     category: "Food",
 //     amount: 150,
-//     date: 2019-07-23,
+//     date: "2019-07-23",
 //     comment: "Had people over & ordered 4 pizza pies"
 // })
 
@@ -28,7 +28,7 @@ const Transaction = require('./server/models/Transaction')
 //     type: "Expense",
 //     category: "Shopping",
 //     amount: 250,
-//     date: 2019-07-20,
+//     date: "2019-07-20",
 //     comment: "Sonya went shopping in Azrieli."
 // })
 
@@ -36,18 +36,29 @@ const Transaction = require('./server/models/Transaction')
 //     type: "Expense",
 //     category: "Rent",
 //     amount: 5000,
-//     date: 2019-07-10,
+//     date: "2019-06-10",
 //     comment: "Rent for July 2019"
+// })
+
+// const salary = new Transaction ({
+//     type: "Income",
+//     category: "Salary",
+//     amount: 10000,
+//     date: "2019-07-05",
+//     comment: "Salary for July 2019"
 // })
 
 // rentPayment.save()
 // shoppingSpree.save()
 // pizzaParty.save()
+// salary.save()
 // sonyaAndNadav.save()
 
 // sonyaAndNadav.transactions.push(rentPayment)
 // sonyaAndNadav.transactions.push(shoppingSpree)
 // sonyaAndNadav.transactions.push(pizzaParty)
+// sonyaAndNadav.transactions.push(salary)
+
 
 mongoose.connect('mongodb://localhost/LoveCounts', {useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'dist')))
