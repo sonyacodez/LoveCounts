@@ -1,6 +1,6 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d370f800f89019d266989ec', userName
+let coupleKey = '5d3827185aabb537cf4007a3', userName // Sonya's Key
 let activePage="Recommendations"
 
 const loadTransactionPage = async function () {
