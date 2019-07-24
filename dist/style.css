@@ -18,19 +18,24 @@ align-content: center;
 align-items: center;
 }
 .transaction-form #submitIncome{
-    /* align-self: center;
-    margin: auto; */
+    align-self: center;
+    margin: auto;
 }
 #formHeader{
     font-size: 25px;
     font-weight: 900;
     text-align: center;
+    margin-bottom: 10px;
+}
+#header-type{
+    color:#00838f;
+    font-weight: 900;
 }
 #transactions-header{
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
     margin-bottom: 20px;
-
+font-weight: 900;
 }
 
 .transactions-list{
