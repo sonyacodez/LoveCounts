@@ -1,6 +1,6 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d370f800f89019d266989ec' //Liat's key
+let coupleKey = '5d370810c6046607fc5e5e56' //Katya's key
 const userName = "Sonya"
 
 // let activePage="Recommendations"
