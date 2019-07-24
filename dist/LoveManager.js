@@ -43,7 +43,7 @@ class LoveManager {
 
     removeTransaction(coupleKey, transactionKey){
         $.ajax({
-            url: `/city/${coupleKey}/${transactionKey}`,
+            url: `/transaction/${coupleKey}/${transactionKey}`,
             type: 'DELETE',
             success: function() {
                 "transaction DELETE complete"
@@ -51,7 +51,16 @@ class LoveManager {
         })
     }
 
-    remove
+    unfavGoal(coupleKey, goalName){
+        $.ajax({
+            url: `/goal/${coupleKey}/${goalName}`,
+            type: 'DELETE',
+            success: function() {
+                "transaction DELETE complete"
+            }
+        })
+    }
+    
     // async getPartner(userData){
     //     let result = await $.get('partner/${userData.userName}`)
     //     return result.partnerName
@@ -67,6 +76,3 @@ class LoveManager {
     //     }
     // }
 }
-
-
-
