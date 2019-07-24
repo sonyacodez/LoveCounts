@@ -77,10 +77,12 @@ const Render = function () {
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
+                
                 labels: ["Food", "Fun", "Rent", "Clothes", "other"],
                 datasets: [{
                     label: "Exspenses",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"], //to add more optional colors
+                    backgroundColor: ["#f1c40f","#9b59b6","#fd79a8", "#e67e22","#27ae60","#2980b9","#778beb","#16a085","#7ed6df"], //to add more optional colors
+                    // backgroundColor: ["#f1c40f", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"], //to add more optional colors
                     data: [2478, 5267, 734, 784, 433]
                 }]
             },
