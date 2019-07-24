@@ -6,6 +6,7 @@ const userName="Sonya"
 // let activePage="Recommendations"
 
 
+
 const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
      await manager.getTransactions(coupleKey)

@@ -1,7 +1,10 @@
 class LoveManager {
     constructor(allTransactions, allGoalOptions) {
         this.allTransactions = [];
-        this.allGoalOptions=[]
+        // this.allGoalOptions = [];
+        this.totalByType = {}
+
+
     }
     //sends a transaction data as POST request to the /expenses post route on the server
 
@@ -38,7 +41,7 @@ class LoveManager {
 
     async getGoals(coupleKey){
         let result = await $.get(`/goals/${coupleKey}`)
-        return result
+        return result;
     }
 
     removeTransaction(coupleKey, transactionKey){
@@ -56,11 +59,26 @@ class LoveManager {
             url: `/goal/${coupleKey}/${goalName}`,
             type: 'DELETE',
             success: function() {
-                "transaction DELETE complete"
+                "favourite goal DELETE complete"
             }
         })
     }
     
+
+    async getThisMonthExpenses(coupleKey,month){
+        let startDate = moment(`2019-${month}-01`).format('LLLL');
+        let endDate = moment(`2019-${month}-31`).format('LLLL')
+        let result = await $.get(`/thisMonthExpenses/${coupleKey}/${startDate}/${endDate}`)
+        return result;
+    }
+
+    // async getSavings(coupleKey, month){
+    //     let startDate = moment(`2019-${month}-01`).format('LLLL');
+    //     let endDate = moment(`2019-${month}-31`).format('LLLL')
+    //     let result = await $.get(`/thisMonthTransactions/${coupleKey}/${startDate}/${endDate}`)
+    //     return result
+    // }
+
     // async getPartner(userData){
     //     let result = await $.get('partner/${userData.userName}`)
     //     return result.partnerName
