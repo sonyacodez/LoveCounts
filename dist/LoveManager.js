@@ -108,10 +108,6 @@ class LoveManager {
         return events
     }
 
-    async bookSportEvent(eventId){//NOT SURE ABOUT THIS
-        let result = await $.get(`/bookSportEvent/${eventId}`)
-        return result
-    }
 
     //for alert "you've gone into debt" feature
     async checkDebt(transaction){
