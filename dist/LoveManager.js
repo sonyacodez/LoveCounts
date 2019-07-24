@@ -16,7 +16,6 @@ class LoveManager {
         }
         this.allTransactions.push(transactionObject)
         $.post(`/transactions`,transactionObject,function (res) {
-            console.log("transaction POST complete")
     })
 }
     //sends a goal data as POST request to the /goal post route on the server
@@ -27,7 +26,6 @@ class LoveManager {
             goalName: goalData.goalName
         }
         $.post('goal', goalObject, function(res){
-            console.log("goal POST complete")
         })
 }
     async getTransactions(coupleKey){
@@ -68,21 +66,12 @@ class LoveManager {
     }
 
     async getLastQuorterExpenses(coupleKey,month){
-        let curStartDate = moment(`2019-${month}-01`).format('LLLL');
+        const firstMonth = month-2;
+        let curStartDate = moment(`2019-${firstMonth}-01`).format('LLLL');
         let curEndDate = moment(`2019-${month}-31`).format('LLLL');
-        let curMonthResult = await $.get(`/thisMonthExpenses/${coupleKey}/${curStartDate}/${curEndDate}`)
-        
-        let prevMonth = month-1;
-        let prevStartDate = moment(`2019-${prevMonth}-01`).format('LLLL');
-        let prevEndDate = moment(`2019-${prevMonth}-31`).format('LLLL');
-        let prevMonthResult = await $.get(`/thisMonthExpenses/${coupleKey}/${prevStartDate}/${prevEndDate}`)
-
-        let firstMonth = month-2;
-        let firstStartDate = moment(`2019-${firstMonth}-01`).format('LLLL');
-        let firstEndDate = moment(`2019-${firstMonth}-31`).format('LLLL');
-        let firstMonthResult = await $.get(`/thisMonthExpenses/${coupleKey}/${firstStartDate}/${firstEndDate}`)
-
-        return (curMonthResult, prevMonthResult, firstMonthResult)
+        let result = await $.get(`/thisMonthExpenses/${coupleKey}/${curStartDate}/${curEndDate}`)
+        console.log(result)
+        return result
     }
 
 
@@ -146,5 +135,3 @@ class LoveManager {
     // }
 }
 
-const loveManager = new LoveManager();
-loveManager.getSportEvents()

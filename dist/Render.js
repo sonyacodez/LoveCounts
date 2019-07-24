@@ -38,34 +38,27 @@ const Render = function () {
         const source = $('#flights-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ flights });
-        // $('.goal-suggestions-div').append(newHTML);
         $('#container').append(newHTML);
     }
 
     const renderSportsEvents = function (events) {
         $(".goal-suggestions-div").empty()
+        $('#form-container').empty()
         $("#loading-gif").empty()
         const source = $('#events-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ events });
-        // $('.goal-suggestions-div').append(newHTML);
-        $('#container').append(newHTML);
+        $('#form-container').append(newHTML);
     }
-    // const renderSportsEvents = function (flights) {
-    //     // $(".goal-suggestions-div").empty()
-    //     // $("#loading-gif").empty()
 
-    //     // const source = $('#flights-template').html();
-    //     // const template = Handlebars.compile(source);
-    //     // let newHTML = template({ flights });
-    //     // // $('.goal-suggestions-div').append(newHTML);
-    //     // $('#container').append(newHTML);
-    // }
-    const renderLoading= function(){
-        $('#container').append(`<div id="loading-gif"><img src="../pics/tenor.gif"></div>`)
+    const renderLoading = function () {
+        $('#form-container').append(`<div id="loading-gif"><img src="../pics/tenor.gif"></div>`)
     }
+
     const renderRecTravelForm = function (favGoals, savings) {
-            $('#container').append(
+        $('#form-container').empty()
+
+        $('#form-container').append(
             `<div id="flight-search-form">
                 <div class="travel-form-item row">
                     <div class="input ">
@@ -82,22 +75,20 @@ const Render = function () {
                 <div id="searchFlightBtn">
                     <a id="searchFlight" class="waves-effect waves-light btn">Search</a>
                 </div>
-            </div>
-            `);
-    }
-
-    const renderGoalRecommendations = function () {
-        //not implemented yet
+            </div>`);
     }
 
     const renderReportPage = function (categories, amount, savings) {
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
-        renderChart(categories, amount)
-        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span>this month!<br>Check Recommendations page to see on what you can spent your savings.</div>`)
+
+        renderPieChart(categories, amount)
+        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span> this month!<br>
+                                    check Recommendations page to see what you can spent them on
+                                </div>`)
     }
 
-    function renderChart(labels, data) {
+    function renderPieChart(labels, data) {
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',
@@ -120,7 +111,6 @@ const Render = function () {
                 },
                 legend: {
                     display: true,
-                    // position:"left",
                     padding: 20
                 }
             }
