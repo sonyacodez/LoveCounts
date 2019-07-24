@@ -94,6 +94,7 @@ const Render = function () {
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
         renderChart(categories, amount)
+        
         $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span> this month!<br>
                                     check Recommendations page to see what you can spent them on
                                 </div>`)

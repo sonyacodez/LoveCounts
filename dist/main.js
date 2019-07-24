@@ -1,6 +1,6 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d370f800f89019d266989ec' //Liat's key
+let coupleKey = '5d370810c6046607fc5e5e56' //Katya's key
 const userName = "Sonya",partnerName="Nadav"
 
 
@@ -20,6 +20,7 @@ $('.navbar').on('click', 'li', async function () {
     } else if (tabName === "Reports") {
         const thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
         const savings = await manager.getSavings(coupleKey, "07")
+        // const debt = await manager.checkDebt
         renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount, savings)
     } else if (tabName === "Transactions") {
         loadTransactionPage()
