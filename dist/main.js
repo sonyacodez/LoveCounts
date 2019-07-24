@@ -26,6 +26,7 @@ $('.navbar').on('click', 'li', async function () {
         loadTransactionPage()
     }else if(tabName==="Recommendations"){
         // rec-page-template
+        renderer.renderRecPage()
     }
 });
 
@@ -41,12 +42,33 @@ const loadProfilePage = async function () {
 $('#container').on('click', '.fav-item', async function () {
     console.log("fav-item onclick")
     const favGoal = $(this).closest('a').attr('data-id')
+    // const state= $(this).closest('a').find('i').className//attr("class")//.hasClass('far')//.attr('class')
+    console.log("state")
+    const goals =await manager.getGoals(coupleKey)
+    let isGoalFav //= goals.find(e=>{e===favGoal})
+    goals.forEach(e=>{if(e===favGoal){
+        isGoalFav=true
+    }})
+    console.log("favGoal:")
     console.log(favGoal)
-    await manager.addFavGoal({
-        coupleKey: coupleKey,
-        goalName: favGoal
-    })
-    loadProfilePage()
+    if (isGoalFav){
+        console.log("delete goal!!!!")
+        console.log(favGoal)
+        await manager.unfavGoal(coupleKey,favGoal)
+        loadProfilePage()
+
+    }
+    else{
+        console.log("add goal!!!!!!!!")
+        await manager.addFavGoal({
+            coupleKey: coupleKey,
+            goalName: favGoal
+        })
+        loadProfilePage()
+
+    }
+   
+    // loadProfilePage()
         // favGoal)
     // submitIncome()
     // submitTransaction("Income")

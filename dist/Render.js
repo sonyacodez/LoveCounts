@@ -2,8 +2,6 @@
 const Render = function () {
 
     const renderTransactionPage = function (expenses) {
-        console.log(expenses)
-        console.log("renderTransactionPage")
         $("#container").empty()
         const source = $('#transaction-template').html();
         const template = Handlebars.compile(source);
@@ -12,30 +10,18 @@ const Render = function () {
     }
 
     const renderNavbar = function (activeTab) {
-        console.log("renderNavbar")
         $(".navbar").empty()
         const source = $('#navbar-template').html();
         const template = Handlebars.compile(source);
         let newHTML = template({ activeTab });
         $('.navbar').append(newHTML);
     }
-
     const renderProfilePage = function (userName, favGoals) {
-        let goalObj={}
-        // favGoals.forEach(element => {
-        //     goalObj.element=true
-        // });
-        // let travel=true
-        // goalObj={
-        //     travel:true
-        // }
-        console.log("favGoals:")
-        console.log(favGoals)
         console.log("renderProfilePage")
         $("#container").empty()
         const source = $('#profile-page-template').html();
         const template = Handlebars.compile(source);
-        let newHTML = template({ userName ,favGoals});
+        let newHTML = template({ userName, favGoals });
         $('#container').append(newHTML);
 
         // favGoals.forEach(e => {
@@ -45,18 +31,25 @@ const Render = function () {
         // });
 
     }
-    // <i class="fas fa-heart">
+    //     const renderProfilePage = function (userName, favGoals) {
+    //         $("#container").empty()
+    //         $('#container').append(`
+    //         <div id="profile-page">
+    //     <div id="profile-header">Hi {{userName}}!!</div>
+    //     <div id="profile-choose">Choose your favorites goals:</div>
+    //     <div id="goals-box">
+    //         <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Travel</a>
+    //          <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
+    //       </div>
 
-    // $(".weatherData").on("click", ".saver",  function () {
-    //     let cityName = $(this).closest(".cityBox").find(".name").text()
-    //     tempmanager.saveCity(cityName)
-    //     $(this).closest(".cityBox").find( ".saveDelete" ).append( "<div class='remove'><i class='fas fa-heart'></i></div>" );
-    //     $(this).closest(".cityBox").find( ".saver" ).remove()
+    //     <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
+    //   </div>
+    // `);
+
+    // }
 
     const renderRecPage = function (goalOptions) {
-        goalOptions=[]
-        //not implemented yet
-        console.log("renderRecPage")
+        goalOptions = []
         $("#container").empty()
         const source = $('#rec-page-template').html();
         const template = Handlebars.compile(source);
@@ -81,20 +74,20 @@ const Render = function () {
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
-              labels: ["Food", "Fun", "Rent", "Clothes", "other"],
-              datasets: [{
-                label: "Exspenses",
-                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], //to add more optional colors
-                data: [2478,5267,734,784,433]
-              }]
+                labels: ["Food", "Fun", "Rent", "Clothes", "other"],
+                datasets: [{
+                    label: "Exspenses",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"], //to add more optional colors
+                    data: [2478, 5267, 734, 784, 433]
+                }]
             },
             options: {
-              title: {
-                display: true,
-                text: 'what did you spend on this month?'
-              }
+                title: {
+                    display: true,
+                    text: 'what did you spend on this month?'
+                }
             }
-        
+
         });
     }
     return {
