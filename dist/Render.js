@@ -48,12 +48,12 @@ const Render = function () {
 
     // }
 
-    const renderRecPage = function (goalOptions) {
-        goalOptions = []
+    const renderRecPage = function (favGoals) {
+        // goalOptions = []
         $("#container").empty()
         const source = $('#rec-page-template').html();
         const template = Handlebars.compile(source);
-        let newHTML = template({ goalOptions });
+        let newHTML = template({ favGoals });
         $('#container').append(newHTML);
     }
 
@@ -65,6 +65,9 @@ const Render = function () {
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
         renderChart()
+        $('#container').append(`<div class="box3 sb14">you saved 300$ this month!<br>
+                                    check Recommendations page to see what you can spent them on
+                                </div>`)
 
     }
 

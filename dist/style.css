@@ -111,3 +111,34 @@ margin-top: 5px;
     margin: auto;
 
 }
+
+.reports-savings-msg{
+    width: 500px;
+    /* /* box-shadow: 5px 10px 8px #888888; */
+    text-align: center;
+    margin: auto;
+}
+.box3 {
+    width: 500px;
+    margin: 50px auto;
+    border-radius: 15px;
+    background: #00bfb6;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    /* font-weight: 900; */
+    /* font-family: arial; */
+    position: relative;
+  }
+  .sb14:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 15px solid transparent;
+    border-right: 15px solid #00bfb6;
+    border-top: 15px solid #00bfb6;
+    border-bottom: 15px solid transparent;
+    left: -16px;
+    top: 0px;
+  }  

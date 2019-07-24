@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  
   <div class="navbar">
   </div>
   <div id="container">
@@ -24,9 +25,9 @@
         <label>Select your goal</label>
         <select class="browser-default">
           <option value="" disabled selected>Choose your option</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          {{#each favGoals}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
         </select>
     </div>
     <div class="goal-suggestions-div">info from the api</div>

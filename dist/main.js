@@ -3,7 +3,7 @@ const manager = new LoveManager()
 let coupleKey = '5d370f800f89019d266989ec' //Liat's key
 const userName="Sonya"
 
-let activePage="Recommendations"
+// let activePage="Recommendations"
 
 const loadTransactionPage = async function () {
     console.log("loadTransactionPage")
@@ -28,10 +28,20 @@ $('.navbar').on('click', 'li', async function () {
     }else if(tabName==="Transactions"){
         loadTransactionPage()
     }else if(tabName==="Recommendations"){
-        // rec-page-template
-        renderer.renderRecPage()
+        loadRecommendationsPage()
     }
 });
+const loadRecommendationsPage = async function () {
+    // console.log("loadProfilePage")
+    // const favGoals = await manager.getGoals(coupleKey)
+    //     console.log(favGoals)
+    //     let goalObj={}
+    //     favGoals.forEach(g=>goalObj[g]=true)
+    //     renderer.renderProfilePage(userName, goalObj)
+    const favGoals = await manager.getGoals(coupleKey)
+    renderer.renderRecPage(favGoals)
+
+}
 
 const loadProfilePage = async function () {
     console.log("loadProfilePage")
