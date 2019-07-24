@@ -115,50 +115,37 @@ router.get(`/thisMonthTransactions/:coupleKey/:startDate/:endDate`, (req,res)=>{
     const endDate = moment(req.params.endDate)
     UserCouple.findById(coupleKey)
         .populate('transactions')
+        .sort({date: -1})
         .exec((err,thisUser)=>{
             const transactionsThisMonthOnly = thisUser.transactions.filter(e => moment(e.date).isBetween(startDate, endDate))
             res.send(transactionsThisMonthOnly)
         })
 })
 
-// const airportIndex = [
-//    {city: "Paris", index: "PAR"},
-//    {city: "Madrid", index: "MAD"},
-//    {city: "Moscow", index: "MOW"},
-//    {city: "Berlin", index: "BER"}
-// ]
-
-// url = 'https://developer.goibibo.com/api/search/?app_key=ce9c9916342908ec12173f3996baecd6&app_id=92460641&format=json&source=TLV&dateofdeparture=20190825&seatingclass=E&adults=2&children=0&infants=0&counter=0&destination='
-
-// router.get('/recs/:destination', function (req, res){
-//    let destination = req.params.destination
-//    let index = airportIndex.find(i=>i.city===destination).index
-//    request(url+index, function(err, response, body){
-//        const getBody = JSON.parse(response.body || "{}")
-//        res.send(getBody)
-// })})
-// router.get('/car/:address/:citystatezip', (req,res)=>{
-//     const APIKey = "X1-ZWz17r8v83e58r_8s1xw"
-//     const address = req.params.address
-//     const citystatezip = req.params.citystatezip
-//     request.get(`http://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=${APIKey}&address=${address}&citystatezip=${citystatezip}`, function(err, housesForSale){
-//         const houses = JSON.parse(housesForSale.body || "{}")
-//         // const allActiveTeamPlayers = roster.filter(p => p.teamId === teamToIDs[teamName] && p.isActive)
-//         // const myTeamPlayers = allActiveTeamPlayers.map(a => {
-//         //     return {
-//         //         firstName: a.firstName,
-//         //         lastName: a.lastName,
-//         //         jersey: a.jersey,
-//         //         pos: a.pos
-//         //     }
-//     })
-//     Below is an example of calling the API for the address for 
-//     the exact address match "2114 Bigelow Ave", "Seattle, WA":
-//     http://www.zillow.com/webservice/GetDeepSearchResults.htm
-//     ?zws-id=<ZWSID>
-//     &
-//     address=2114+Bigelow+Ave
-//     &
-//     citystatezip=Seattle%2C+WA
+router.get(`/travel/:destination/:startDate`, (req, res)=>{
+    const destination = req.params.destination
+    const startDate = req.params.startDate
+    const airportIndex = [
+        {city: "Paris", index: "PAR"},
+        {city: "Madrid", index: "MAD"},
+        {city: "Moscow", index: "MOW"},
+        {city: "Berlin", index: "BER"}
+    ]
+    const airportName = airportIndex.find(i => i.city === destination).index
+    request.get(`https://developer.goibibo.com/api/search/?app_key=ce9c9916342908ec12173f3996baecd6&app_id=92460641&format=json&source=TLV&dateofdeparture=${startDate}&seatingclass=E&adults=2&children=0&infants=0&counter=0&destination=${airportName}`, (err, response)=>{
+        const getFlights = JSON.parse(response.body || "{}").data.onwardflights
+        const myFlights = getFlights.map(f => {
+            return {
+                departureTime: f.deptime,
+                arrivalTime: f.arrtime,
+                arrivalDate: f.arrdate,
+                flightDuration: f.duration,
+                airline: f.airline,
+                price: f.fare.totalfare * 0.014
+            }
+        })
+        res.send(myFlights)
+    })
+})
 
 module.exports = router
