@@ -147,23 +147,40 @@ router.get(`/travel/:destination/:startDate`, (req, res)=>{
     })
 })
 
-router.get(`/events`, (req, res)=>{
-    request.get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=utaQBvfKItKAf5gjW4pD86XDIyUV1fto
-    `, (err, response)=>{
-        const getEvents = JSON.parse(response.body || "{}")._embedded.events
-        const myEvents = getEvents.map(e => {
+router.get(`/sportEvents`, (req, res)=>{
+    request.get(`https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=utaQBvfKItKAf5gjW4pD86XDIyUV1fto`, (err, response)=>{
+        const getEvents = JSON.parse(response.body || "[]")._embedded.events
+        const getSportEvents = getEvents.filter(e => e.classifications[0].segment.name === "Sports")
+        const mySportEvents = getSportEvents.map(e => {
             return {
                 eventName: e.name,
+                eventURL: e.url,
                 eventImage: e.images[0].url,
                 eventDateStart: e.dates.start.localDate,
-                eventGenre: e.classifications[0].segment.name,
-                eventSubGenre: e.classifications[0].genre.name,
+                eventSportType: e.classifications[0].genre.name,
                 eventID: e.id
             }
         })
-        res.send(myEvents)
+        res.send(mySportEvents)
     })
 })
+
+// router.get(`/bookSportEvent/:eventID`, (req, res)=>{
+//     const eventID = req.params.eventID
+//     request.get(`https://app.ticketmaster.com/discovery/v2/events/${eventID}.json?apikey=utaQBvfKItKAf5gjW4pD86XDIyUV1fto`, (err, response)=>{
+//         const getThisEventDetails = JSON.parse(response.body || "{}").url
+//         // const thisEvent = getThisEventDetails.map(e => {
+//         //     return {
+//         //         eventName: e.name,
+//         //         eventImage: e.images[0].url,
+//         //         eventDateStart: e.dates.start.localDate,
+//         //         eventSportType: e.classifications[0].genre.name,
+//         //         eventID: e.id
+//         //     }
+//         // })
+//         res.send(getThisEventDetails)
+//     })
+// })
 
 // var bby = require('bestbuy')('YourAPIKey');
 // bby.products('manufacturer=canon&salePrice<1000',{show:'sku,name,salePrice'}).then(function(data){
