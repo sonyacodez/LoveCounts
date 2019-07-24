@@ -17,29 +17,72 @@
   <div class="navbar">
   </div>
   <div id="container">
-
+     
   </div>
   <script id="rec-page-template" type="text/x-handlebars-template">
-    <div class="box3 sb14">you saved 300$ this month!<br>
+    <div class="box3 sb14">You saved <span id="savings"> {{savings}}$ </span> this month!<br>
       Choose goal to see what you can spent them on:
   </div>
     <div class="rec-selector-box">
-        <label>Select your goal</label>
-        <select class="browser-default">
-          <option value="" disabled selected>Choose your option</option>
+        <select class="goal-dropdown browser-default">
+          <option value="" disabled selected>Choose your goal</option>
           {{#each favGoals}}
           <option value="{{this}}">{{this}}</option>
           {{/each}}
         </select>
     </div>
-    <div class="goal-suggestions-div">info from the api</div>
+    <div class="goal-suggestions-div"></div>
       
                 
+  </script>
+
+  <script id="flights-template" type="text/x-handlebars-template">
+    {{#each flights}}
+    <div id="flight-card">
+        <div id="col1">
+          <i class="fas fa-plane"></i>
+        </div>
+        <div id="col2">
+            <div>Departure Time: <span id="flight-info">{{departureTime}}</span></div>
+            <div>Flight Duration: <span id="flight-info">{{flightDuration}}</span></div>
+        </div>
+        <div id="col3">
+          <div>Arrival Time: <span id="flight-info">{{arrivalDate}}, {{arrivalTime}}</span></div>
+          <div>Airline: <span id="flight-info">{{airline}}</span></div>
+        </div>
+        <div class="flight-price" id="col4">
+          {{price}}$
+        </div>
+      </div>
+    {{/each}}      
+  </script>
+
+  <script id="events-template" type="text/x-handlebars-template">
+    {{#each events}}
+    <div id="event-card">
+        <div id="col1">
+          <img id="eventImage" src="{{eventImage}}">
+        </div>
+        <div id="col2">
+            <div>{{eventName}}</div>
+        </div>
+        <div id="col3">
+            <div>{{eventSportType}}</div>
+        </div>
+        <div id="col4">
+          <div>{{eventDateStart}}</div>
+        </div>
+        <div id="col5"><a href="{{eventURL}}">Click here to book now!</a>
+        </div>
+        </div>
+      </div>
+    {{/each}}      
   </script>
 
   <script id="profile-page-template" type="text/x-handlebars-template">
     <div id="profile-page">
     <div id="profile-header">Hi {{userName}}!</div>
+    <div id="love-counts-gif"><img src="../pics/Long-Gif-love-counts-1-ANIMATION.gif"></div>
     <div id="profile-choose">Choose your favorites goals:</div>
     <div id="goals-box">
         {{#if favGoals.Travel}}
@@ -56,7 +99,12 @@
         <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a car</a>
         {{else}}
         <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
-{{/if}}
+        {{/if}}
+        {{#if favGoals.Sport}}
+        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Go to a sports event</a>
+        {{else}}
+        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Go to a sports event</a>
+        {{/if}}
       </div>
    
     <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
@@ -120,7 +168,9 @@
                 </div>
               </div>
           </div>
-          <a id="submitExpense" class="waves-effect waves-light btn">submit</a>
+          <div id="submitBtn">
+              <a id="submitExpense" class="waves-effect waves-light btn">submit</a>
+          </div>
         </form>
         </div>
   
@@ -156,8 +206,9 @@
                     </div>
                   </div>
               </div>
-              
-              <a id="submitIncome" class="waves-effect waves-light btn">submit</a>
+              <div id="submitBtn">
+                  <a id="submitIncome" class="waves-effect waves-light btn">submit</a>
+                </div>
             </form>
         </div>
   
