@@ -8,24 +8,66 @@
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans&display=swap" rel="stylesheet">
   <title>Love Counts</title>
 </head>
 
 <body>
-  <div class="navbar">
-
-  </div>
   
-    
-
-    <div id="container">
+  <div class="navbar">
   </div>
+  <div id="container">
 
-    <script id="navbar-template" type="text/x-handlebars-template">
+  </div>
+  <script id="rec-page-template" type="text/x-handlebars-template">
+    <div class="box3 sb14">you saved 300$ this month!<br>
+      Choose goal to see what you can spent them on:
+  </div>
+    <div class="rec-selector-box">
+        <label>Select your goal</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Choose your option</option>
+          {{#each favGoals}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+    </div>
+    <div class="goal-suggestions-div">info from the api</div>
+      
+                
+  </script>
+
+  <script id="profile-page-template" type="text/x-handlebars-template">
+    <div id="profile-page">
+    <div id="profile-header">Hi {{userName}}!</div>
+    <div id="profile-choose">Choose your favorites goals:</div>
+    <div id="goals-box">
+        {{#if favGoals.Travel}}
+        <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Travel</a>
+        {{else}}
+        <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Travel</a>
+        {{/if}}
+        {{#if favGoals.House}}
+        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a house</a>
+        {{else}}
+        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a house</a>
+        {{/if}}
+        {{#if favGoals.Car}}
+        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a car</a>
+        {{else}}
+        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
+{{/if}}
+      </div>
+   
+    <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
+  </div>
+  </script>
+
+  <script id="navbar-template" type="text/x-handlebars-template">
       <nav>
-          <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Logo</a>
+          <div class="nav-wrapper red darken-3
+          ">
+            <a class="brand-logo center"><img id="logo" src="../pics/LogoMakr_7JRRYI.png"></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
               <li id="transactions-tab"><a>Transactions</a></li>
               <li id="reports-tab"><a>Reports</a></li>
@@ -38,35 +80,42 @@
           </div>
         </nav>    
     </script>
-    <script id="transaction-template" type="text/x-handlebars-template">
+  <script id="transaction-template" type="text/x-handlebars-template">
     <div id="addTransactionForms">
         <div class="transaction-form" id="addExpenseForm">
-          <div id="formHeader">Add Expense</div>
+          <div id="formHeader">Add <span id="header-type">Expense</span></div>
   
           <div class="row">
             <form class="col s12">
               <label>Category</label>
-              <select id="expense-category" class="browser-default">
+              <select id="Expense-category" class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="Food">Food</option>
                 <option value="Fun">Fun</option>
                 <option value="Rent">Rent</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Entrtainment">Entrtainment</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Medical">Medical</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Other">Other</option>
+
               </select>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="expense-amount" type="number" class="validate">
+                  <input id="Expense-amount" type="number" class="validate">
                   <label for="Amount">Amount</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="expense-date" type="date" class="validate">
+                  <input id="Expense-date" type="date" class="validate" value={{currentDate}}>
                   <label for="Date">Date</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="expense-comment" type="text" class="validate">
+                  <input id="Expense-comment" type="text" class="validate">
                   <label for="Comment">Comment</label>
                 </div>
               </div>
@@ -76,31 +125,33 @@
         </div>
   
         <div class="transaction-form" id="addIncomeForm">
-            <div  id="formHeader">Add Income</div>
+            <div  id="formHeader">Add <span id="header-type">Income</span></div>
   
           <div class="row">
               <form class="col s12">
                   <label>Category</label>
-                  <select class="browser-default" id="income-category">
+                  <select class="browser-default" id="Income-category">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="Salary">Salary</option>
                     <option value="Gift">Gift</option>
+                    <option value="Other">Other</option>
+
                   </select>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="income-amount" type="number" class="validate">
+                      <input id="Income-amount" type="number" class="validate">
                       <label for="Amount">Amount</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="income-date" type="date" class="validate">
+                      <input id="Income-date" type="date" class="validate" value={{currentDate}}>
                       <label for="Date">Date</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="income-comment" type="text" class="validate">
+                      <input id="Income-comment" type="text" class="validate">
                       <label for="Comment">Comment</label>
                     </div>
                   </div>
@@ -112,6 +163,7 @@
   
       </div>
       </div>
+
       <div class="divider"></div>
 
       <div class="transactions-list">
@@ -120,20 +172,20 @@
             <thead>
               <tr>
                   <th></th>
-                  <th>category</th>
-                  <th>amount</th>
-                  <th>date</th>
-                  <th>comment</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Comment</th>
                   <th></th>
               </tr>
             </thead>
             <tbody>
                 {{#each expenses}}
-                <tr id="transaction-table-row">
+                <tr id="transaction-table-row" data-id="{{_id}}">
                   {{#if type}}
-                  <td><i class="fas fa-minus-circle"></i></td>
+                  <td><i class="fas fa-arrow-circle-down"></i></td>
                   {{else}}
-                  <td ><i class="fas fa-plus-circle"></i></td>
+                  <td ><i class="fas fa-arrow-circle-up"></i></i></td>
                   {{/if}}
                     <td id="category">{{category}}</td>
                     <td>{{amount}}</td>
@@ -147,14 +199,18 @@
       </div>
       
     </script>
-    <script src="./moment/min/moment.min.js"></script>
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="./handlebars/dist/handlebars.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="Render.js"></script>
-    <script src="LoveManager.js"></script>
 
-    <script src="main.js"></script>
+  <script src="./jquery/dist/jquery.js"></script>
+  <script src="./handlebars/dist/handlebars.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="Render.js"></script>
+  <script src="LoveManager.js"></script>
+
+
+  <script src="main.js"></script>
 </body>
 
 
