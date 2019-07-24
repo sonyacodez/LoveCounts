@@ -61,10 +61,14 @@ const Render = function () {
         //not implemented yet
     }
 
-    const renderReportPage = function () {
+    const renderReportPage = function (categories,amount) {
+        console.log("#categories:")
+        console.log(categories)//lables
+        console.log("#amount:")
+        console.log(amount)
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
-        renderChart()
+        renderChart(categories,amount)
         $('#container').append(`<div class="box3 sb14">you saved 300$ this month!<br>
                                     check Recommendations page to see what you can spent them on
                                 </div>`)
@@ -72,18 +76,16 @@ const Render = function () {
     }
 
     //needs to recive 2 arrays
-    function renderChart(data, labels) {
+    function renderChart( labels,data) {
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                
-                labels: ["Food", "Fun", "Rent", "Clothes", "other"],
+                labels: labels,
                 datasets: [{
                     label: "Exspenses",
-                    backgroundColor: ["#f1c40f","#9b59b6","#fd79a8", "#e67e22","#27ae60","#2980b9","#778beb","#16a085","#7ed6df"], //to add more optional colors
-                    // backgroundColor: ["#f1c40f", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"], //to add more optional colors
-                    data: [2478, 5267, 734, 784, 433]
+                    backgroundColor: ["#f1c40f","#9b59b6","#fd79a8", "#e67e22","#27ae60","#2980b9","#778beb","#16a085","#7ed6df"],
+                    data:data
                 }]
             },
             options: {

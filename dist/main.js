@@ -28,7 +28,8 @@ $('.navbar').on('click', 'li', async function () {
     if (tabName==="Profile"){
         loadProfilePage()
     }else if(tabName==="Reports"){
-        renderer.renderReportPage()
+        let thisMonthExpenses=await manager.getThisMonthExpenses(coupleKey,"07")
+        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount)
     }else if(tabName==="Transactions"){
         loadTransactionPage()
     }else if(tabName==="Recommendations"){
