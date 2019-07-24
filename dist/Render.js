@@ -122,7 +122,6 @@ const Render = function () {
         renderNavbar,
         renderProfilePage,
         renderRecPage,
-        renderGoalRecommendations,
         renderReportPage,
         renderRecTravelForm,
         renderFlights,
