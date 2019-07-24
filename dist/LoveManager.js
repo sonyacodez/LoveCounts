@@ -102,15 +102,21 @@ class LoveManager {
         return flights;
     }
 
-    //for alert about going into debt feature
+    async getSportEvents(){
+        let result = await $.get('/sportEvents');
+        let events = result.slice(0,10)
+        return events
+    }
 
+
+    //for alert "you've gone into debt" feature
     async checkDebt(transaction){
         const transactionObject = {
             type: transaction.type,
             amount: transaction.amount, 
             month: moment(transaction.date).month()+1,
             coupleKey: transaction.coupleKey
-        }
+        };
         let startDate = moment(`2019-${transactionObject.month}-01`).format('LLLL');
         let endDate = moment(`2019-${transactionObject.month}-31`).format('LLLL')
         let thisMonthTransactions = await $.get(`/thisMonthTransactions/${transactionObject.coupleKey}/${startDate}/${endDate}`)
