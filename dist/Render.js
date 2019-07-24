@@ -94,8 +94,7 @@ const Render = function () {
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
         renderChart(categories, amount)
-        $('#container').append(`<a id="compareMonthly" class="waves-effect waves-light btn">Compare Monthly Expenses</a>`);
-        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span>this month!<br>check Recommendations page to see what you can spent them on</div>`)
+        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span>this month!<br>Check Recommendations page to see on what you can spent your savings.</div>`)
     }
 
     function renderChart(labels, data) {
@@ -114,7 +113,7 @@ const Render = function () {
                 title: {
                     display: true,
                     fontSize: 20,
-                    text: 'what did you spend on this month?'
+                    text: 'What did you spend on this month?'
                 }, animation: {
                     duration: 1500,
                     easing: "linear"
