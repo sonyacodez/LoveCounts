@@ -1,87 +1,94 @@
 const renderer = Render()
 const manager = new LoveManager()
 let coupleKey = '5d3827185aabb537cf4007a3' //Sonya's key
-let activePage="Recommendations"
+const userName = "Sonya"
 
 const loadTransactionPage = async function () {
-    console.log("loadTransactionPage")
-     await manager.getTransactions(coupleKey)
-     const expenses =manager.allTransactions
-    // const expenses = [
-    //     { type: 'exspense', category: 'food', amount: '30', date: '13/3/12', comment: 'food is good' },
-    //     { type: 'income', category: 'salary', amount: '4000000', date: '3/3/2020', comment: 'work work work' },
-    //     { type: 'exspense', category: 'fun', amount: '100', date: '1/1/1111', comment: 'my comment' }
-    // ]
-    expenses.forEach(e => { e.type === 'exspense' ? e.type = true : e.type = false })
-    renderer.renderTransactionPage(expenses)
+    await manager.getTransactions(coupleKey)
+    const expenses = manager.allTransactions
+    let currentDate = moment(new Date()).format("YYYY-MM-DD")
+    expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
+    expenses.forEach(e => { e.date = moment(e.date).format("MMM Do YYYY") })
+    renderer.renderTransactionPage(expenses, currentDate)
 }
 
-$('.nav-wrapper').on('click', 'li', async function () {
-    console.log("tab onClick")
+$('.navbar').on('click', 'li', async function () {
     const tabName = $(this).closest('li').text()
-    console.log(tabName)
+    if (tabName === "Profile") {
+        loadProfilePage()
+    } else if (tabName === "Reports") {
+        let thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
+        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount)
+    } else if (tabName === "Transactions") {
+        loadTransactionPage()
+    } else if (tabName === "Recommendations") {
+        loadRecommendationsPage()
+    }
 });
+const loadRecommendationsPage = async function () {
+    const favGoals = await manager.getGoals(coupleKey)
+    renderer.renderRecPage(favGoals)
+
+}
+
+const loadProfilePage = async function () {
+    const favGoals = await manager.getGoals(coupleKey)
+    let goalObj = {}
+    favGoals.forEach(g => goalObj[g] = true)
+    renderer.renderProfilePage(userName, goalObj)
+}
+
+$('#container').on('click', '.fav-item', async function () {
+    const favGoal = $(this).closest('a').attr('data-id')
+    const goals = await manager.getGoals(coupleKey)
+    let isGoalFav //= goals.find(e=>{e===favGoal})
+    goals.forEach(e => {
+        if (e === favGoal) {
+            isGoalFav = true
+        }
+    })
+    if (isGoalFav) {
+        await manager.unfavGoal(coupleKey, favGoal)
+        loadProfilePage()
+    }
+    else {
+        await manager.addFavGoal({ coupleKey: coupleKey, goalName: favGoal })
+        loadProfilePage()
+    }
+});
+
 $('#container').on('click', '#submitIncome', async function () {
-    console.log("submitIncome onClick")
-    submitIncome()
+    submitTransaction("Income")
 });
 
 $('#container').on('click', '#submitExpense', async function () {
-    console.log("submitExpense onClick")
-    submitExpense()
+    submitTransaction("Expense")
 });
+
 $('#container').on('click', '#delete-transaction', function () {
-    console.log("delete-transaction onClick")
-    const item = $(this).closest('#transaction-table-row').find('#category').text()
-    console.log(item)
-    // deleteTransaction()
+    const transactionKey = $(this).closest('#transaction-table-row').attr('data-id')//.text()
+    manager.removeTransaction(coupleKey, transactionKey)
+    loadTransactionPage()
 });
 
-const submitIncome = async function () {
-    console.log("submitIncome")
-    const amount = $("#income-amount").val()
-    const date = $("#income-date").val()
-    const comment = $("#income-comment").val()
-    const category = $("#income-category").val()
+const submitTransaction = async function (type) {
+    const amount = $(`#${type}-amount`).val()
+    const date = $(`#${type}-date`).val()
+    const comment = $(`#${type}-comment`).val()
+    const category = $(`#${type}-category`).val()
     //to check that no one is empty
-    const incomeInfo = {
-        type: "Income",
+    const tranactionInfo = {
+        type: type,
+        coupleKey: coupleKey,
         category: category,
         amount: amount,
         date: date,
         comment: comment
     }
-    console.log(amount)
-    console.log(date)
-    console.log(comment)
-    console.log(category)
-
-    // await manager.addExpense(coupleKey, incomeInfo)
-    // loadTransactionPage()
+    manager.addTransaction(tranactionInfo)
+    loadTransactionPage()
 }
 
-const submitExpense = async function () {
-    console.log("submitIncome")
-    const amount = $("#expense-amount").val()
-    const date = $("#expense-date").val()
-    const comment = $("#expense-comment").val()
-    const category = $("#expense-category").val()
-    //to check that no one is empty
-    const expenseInfo = {
-        type: "Expense",
-        category: category,
-        amount: amount,
-        date: date,
-        comment: comment
-    }
-    console.log(amount)
-    console.log(date)
-    console.log(comment)
-    console.log(category)
-
-    // await manager.addExpense(coupleKey, ExpenseInfo)
-    // loadTransactionPage()
-}
 
 renderer.renderNavbar()
 loadTransactionPage()

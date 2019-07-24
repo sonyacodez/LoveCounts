@@ -1,3 +1,8 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif;
+}
 #addTransactionForms{
     display: flex;
     justify-content: center;
@@ -13,33 +18,134 @@ align-content: center;
 align-items: center;
 }
 .transaction-form #submitIncome{
-    /* align-self: center;
-    margin: auto; */
+    align-self: center;
+    margin: auto;
 }
 #formHeader{
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: 900;
     text-align: center;
+    margin-bottom: 10px;
+}
+#header-type{
+    color:#00838f;
+    font-weight: 900;
 }
 #transactions-header{
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
     margin-bottom: 20px;
-
+font-weight: 900;
 }
 
 .transactions-list{
     width: 80%;
-    margin-top: 40px;
+    /* margin-top: 100px; */
     margin:auto;
     text-align: center;
+    margin-bottom: 50px;
+
 }
 
 
 
-.fa-plus-circle{
+.fa-arrow-circle-up{
     color: green;
 }
 
-.fa-minus-circle{
+.fa-arrow-circle-down{
 color: red;
 }
+
+#profile-page{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:50px;
+}
+
+#profile-header{
+    font-size: 40px;
+    margin:10px;
+}
+
+#profile-choose{
+    font-size: 15px;
+    margin: 5px;
+}
+
+.waves-effect{
+    margin: 10px;
+}
+#goals-box{
+    box-shadow: 5px 10px 8px #888888;
+    padding: 50px;
+    margin:20px;
+    border-radius: 5px;
+}
+
+.fa-heart{
+    color: red;
+    padding-right: 8px;
+}
+
+#logo{
+height: 63px;
+/* margin-top: 5px; */
+}
+
+.divider{
+    margin: 50px;
+}
+
+.rec-selector-box{
+    width: 200px;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.goal-suggestions-div{
+    width: 200px;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    margin: auto;
+
+}
+
+.reports-savings-msg{
+    width: 500px;
+    /* /* box-shadow: 5px 10px 8px #888888; */
+    text-align: center;
+    margin: auto;
+}
+.box3 {
+    width: 500px;
+    margin: 50px auto;
+    border-radius: 15px;
+    background: #00bfb6;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    /* font-weight: 900; */
+    /* font-family: arial; */
+    position: relative;
+  }
+  .sb14:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 15px solid transparent;
+    border-right: 15px solid #00bfb6;
+    border-top: 15px solid #00bfb6;
+    border-bottom: 15px solid transparent;
+    left: -16px;
+    top: 0px;
+  }  
