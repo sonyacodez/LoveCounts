@@ -37,6 +37,7 @@ const Render = function () {
     }
 
     const renderReportPage = function (categories, amount) {
+        
         $("#container").empty()
         $('#container').append(`<canvas id="myChart"></canvas>`);
         renderChart(categories, amount)
