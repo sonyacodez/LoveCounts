@@ -141,5 +141,5 @@ class LoveManager {
     // }
 }
 
-const loveManager = new LoveManager();
-loveManager.getLastQuorterExpenses('5d370810c6046607fc5e5e56',1)
+// const loveManager = new LoveManager();
+// loveManager.getLastQuorterExpenses('5d370810c6046607fc5e5e56',1)

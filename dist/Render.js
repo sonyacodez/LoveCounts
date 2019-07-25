@@ -78,14 +78,52 @@ const Render = function () {
             </div>`);
     }
 
-    const renderReportPage = function (categories, amount, savings) {
+    const renderReportPage = function (chartType, categories, amount, savings) {
         $("#container").empty()
-        $('#container').append(`<canvas id="myChart"></canvas>`);
+        $('#container').append(`<canvas id="myChart" height="110"></canvas>`);
+        if (chartType === "Pie") {
+            renderPieChart(categories, amount)
+            $('#container').append(`<button id="change-to-bar-table-btn">Compare the last 3 months</div>`)
+        } else if (chartType === "Bar") {
+            renderBarChart(categories, amount.firstMonth, amount.secondMonth, savings)
+            $('#container').append(`<button id="change-to-pie-table-btn">Check this month expenses</div>`)
+        }
+// =======
+//         $('#container').append(`<canvas id="myChart"></canvas>`);
 
-        renderPieChart(categories, amount)
-        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span> this month!<br>
-                                    check Recommendations page to see what you can spent them on
+//         renderPieChart(categories, amount)
+// >>>>>>
+        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> $${savings} </span> this month!<br>
+                                    Check your Recommendations page to see what you can spend your savings on.
                                 </div>`)
+    }
+
+    function renderBarChart(labels, data1, data2) {
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,//["1900", "1950", "1999", "2050"],
+                datasets: [
+                    {
+                        label: "June",
+                        backgroundColor: "#3e95cd",
+                        data: data1,//[133, 221, 783, 2478]
+                    }, {
+                        label: "July",
+                        backgroundColor: "#8e5ea2",
+                        data: data2,//[408, 547, 675, 734]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'June and July Expenses'
+                }
+            }
+        });
+
     }
 
     function renderPieChart(labels, data) {
