@@ -85,40 +85,41 @@ const Render = function () {
             renderPieChart(categories, amount)
             $('#container').append(`<button id="change-to-bar-table-btn">Compare the last 3 months</div>`)
         } else if (chartType === "Bar") {
-            renderBarChart(categories, amount.first, amount.second, amount.third, savings)
+            renderBarChart(categories, amount.firstMonth, amount.secondMonth, savings)
             $('#container').append(`<button id="change-to-pie-table-btn">Check this month expenses</div>`)
         }
-        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span> this month!<br>
-                                    check Recommendations page to see what you can spent them on
+// =======
+//         $('#container').append(`<canvas id="myChart"></canvas>`);
+
+//         renderPieChart(categories, amount)
+// >>>>>>
+        $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> $${savings} </span> this month!<br>
+                                    Check your Recommendations page to see what you can spend your savings on.
                                 </div>`)
     }
 
-    function renderBarChart(labels, data1, data2, data3) {
+    function renderBarChart(labels, data1, data2) {
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["1900", "1950", "1999", "2050"],
+                labels: labels,//["1900", "1950", "1999", "2050"],
                 datasets: [
                     {
-                        label: "Africa",
+                        label: "June",
                         backgroundColor: "#3e95cd",
-                        data: [133, 221, 783, 2478]
+                        data: data1,//[133, 221, 783, 2478]
                     }, {
-                        label: "Europe",
+                        label: "July",
                         backgroundColor: "#8e5ea2",
-                        data: [408, 547, 675, 734]
-                    }, {
-                        label: "Europe",
-                        backgroundColor: "#2ecc71",
-                        data: [30, 30, 100, 734]
+                        data: data2,//[408, 547, 675, 734]
                     }
                 ]
             },
             options: {
                 title: {
                     display: true,
-                    text: 'Population growth (millions)'
+                    text: 'June and July Expenses'
                 }
             }
         });
@@ -141,7 +142,7 @@ const Render = function () {
                 title: {
                     display: true,
                     fontSize: 20,
-                    text: 'what did you spend on this month?'
+                    text: 'What did you spend on this month?'
                 }, animation: {
                     duration: 1500,
                     easing: "linear"
@@ -154,6 +155,11 @@ const Render = function () {
 
         });
     }
+
+    function renderDebtCheck(debt){
+        alert(`You have a debt of $${debt} this month!`)
+    }
+
     return {
         renderTransactionPage,
         renderNavbar,
@@ -163,7 +169,8 @@ const Render = function () {
         renderRecTravelForm,
         renderFlights,
         renderLoading,
-        renderSportsEvents
+        renderSportsEvents,
+        renderDebtCheck
     }
 }
 

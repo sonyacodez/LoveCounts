@@ -38,9 +38,14 @@ const loadReportsPageWithBar = async function () {
     const lastQuorterExpenses = await manager.getLastQuorterExpenses(coupleKey, "07")
     console.log("lastQuorterExpenses")
     console.log(lastQuorterExpenses)
-    // const savings = await manager.getSavings(coupleKey, "07")
+    const savings = await manager.getSavings(coupleKey, "07")
     // const debt = await manager.checkDebt
-    renderer.renderReportPage("Bar")//-> send lastQuorterExpenses to here
+    console.log(lastQuorterExpenses.amount)
+    lastQuorterExpenses.amount={
+        firstMonth: lastQuorterExpenses.firstMonth,
+        secondMonth: lastQuorterExpenses.secondMonth
+    }
+    renderer.renderReportPage("Bar",lastQuorterExpenses.categories, lastQuorterExpenses.amount,savings)//-> send lastQuorterExpenses to here
 }
 const loadRecommendationsPage = async function () {
     const favGoals = await manager.getGoals(coupleKey)
@@ -91,7 +96,8 @@ $('#container').on('click', '.fav-item', async function () {
     }
 });
 
-$('#container').on('click', '#searchFlightBtn', async function () {
+$('#form-container').on('click', '#searchFlightBtn', async function () {
+    console.log("searchFlightBtn")
     const destination = $(`#destination`).val()
     const departureDate = moment($(`#departure-date`).val()).format("YYYYMMDD")
     renderer.renderLoading()
@@ -149,6 +155,10 @@ const submitTransaction = async function (type) {
         comment: comment
     }
     manager.addTransaction(tranactionInfo)
+    const debt = await manager.checkDebt(tranactionInfo)
+    if(debt){
+        renderer.renderDebtCheck(debt)
+    }
     loadTransactionPage()
 }
 
