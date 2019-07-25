@@ -78,13 +78,51 @@ const Render = function () {
             </div>`);
     }
 
-    const renderReportPage = function (categories, amount, savings) {
+    const renderReportPage = function (chartType, categories, amount, savings) {
         $("#container").empty()
-        $('#container').append(`<canvas id="myChart"></canvas>`);
-        renderPieChart(categories, amount)
+        $('#container').append(`<canvas id="myChart" height="110"></canvas>`);
+        if (chartType === "Pie") {
+            renderPieChart(categories, amount)
+            $('#container').append(`<button id="change-to-bar-table-btn">Compare the last 3 months</div>`)
+        } else if (chartType === "Bar") {
+            renderBarChart(categories, amount.first, amount.second, amount.third, savings)
+            $('#container').append(`<button id="change-to-pie-table-btn">Check this month expenses</div>`)
+        }
         $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> ${savings}$ </span> this month!<br>
                                     check Recommendations page to see what you can spent them on
                                 </div>`)
+    }
+
+    function renderBarChart(labels, data1, data2, data3) {
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["1900", "1950", "1999", "2050"],
+                datasets: [
+                    {
+                        label: "Africa",
+                        backgroundColor: "#3e95cd",
+                        data: [133, 221, 783, 2478]
+                    }, {
+                        label: "Europe",
+                        backgroundColor: "#8e5ea2",
+                        data: [408, 547, 675, 734]
+                    }, {
+                        label: "Europe",
+                        backgroundColor: "#2ecc71",
+                        data: [30, 30, 100, 734]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Population growth (millions)'
+                }
+            }
+        });
+
     }
 
     function renderPieChart(labels, data) {
@@ -121,7 +159,6 @@ const Render = function () {
         renderNavbar,
         renderProfilePage,
         renderRecPage,
-        renderGoalRecommendations,
         renderReportPage,
         renderRecTravelForm,
         renderFlights,

@@ -18,16 +18,30 @@ $('.navbar').on('click', 'li', async function () {
     if (tabName === "Profile") {
         loadProfilePage()
     } else if (tabName === "Reports") {
-        const thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
-        const savings = await manager.getSavings(coupleKey, "07")
-        // const debt = await manager.checkDebt
-        renderer.renderReportPage(thisMonthExpenses.categories, thisMonthExpenses.amount, savings)
+        loadReportsPageWithPie()
     } else if (tabName === "Transactions") {
-        loadTransactionPage()
+            loadTransactionPage()
+
     } else if (tabName === "Recommendations") {
         loadRecommendationsPage()
     }
 });
+
+const loadReportsPageWithPie = async function () {
+    const thisMonthExpenses = await manager.getThisMonthExpenses(coupleKey, "07")
+    const savings = await manager.getSavings(coupleKey, "07")
+    // const debt = await manager.checkDebt
+    renderer.renderReportPage("Pie",thisMonthExpenses.categories, thisMonthExpenses.amount, savings)
+}
+
+const loadReportsPageWithBar = async function () {
+    const lastQuorterExpenses = await manager.getLastQuorterExpenses(coupleKey, "07")
+    console.log("lastQuorterExpenses")
+    console.log(lastQuorterExpenses)
+    // const savings = await manager.getSavings(coupleKey, "07")
+    // const debt = await manager.checkDebt
+    renderer.renderReportPage("Bar")//-> send lastQuorterExpenses to here
+}
 const loadRecommendationsPage = async function () {
     const favGoals = await manager.getGoals(coupleKey)
     const savings = await manager.getSavings(coupleKey, "07")
@@ -103,6 +117,23 @@ $('#container').on('click', '#delete-transaction', function () {
     loadTransactionPage()
 });
 
+
+$('#container').on('click', '#change-to-bar-table-btn', function () {
+    console.log("on click load bar")
+    // const transactionKey = $(this).closest('#transaction-table-row').attr('data-id')//.text()
+    // manager.removeTransaction(coupleKey, transactionKey)
+    // loadTransactionPage()
+    // renderer.renderReportPage("Bar")
+    loadReportsPageWithBar()
+});
+
+$('#container').on('click', '#change-to-pie-table-btn', function () {
+    // const transactionKey = $(this).closest('#transaction-table-row').attr('data-id')//.text()
+    // manager.removeTransaction(coupleKey, transactionKey)
+    // loadTransactionPage()
+    loadReportsPageWithPie()
+    // renderer.renderReportPage("Pie")
+});
 const submitTransaction = async function (type) {
     const amount = $(`#${type}-amount`).val()
     const date = $(`#${type}-date`).val()
