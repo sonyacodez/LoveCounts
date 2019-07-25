@@ -116,17 +116,22 @@ const Render = function () {
 
         });
     }
+
+    function renderDebtCheck(debt){
+        alert(`You have a debt of $${debt} this month!`)
+    }
+
     return {
         renderTransactionPage,
         renderNavbar,
         renderProfilePage,
         renderRecPage,
-        renderGoalRecommendations,
         renderReportPage,
         renderRecTravelForm,
         renderFlights,
         renderLoading,
-        renderSportsEvents
+        renderSportsEvents,
+        renderDebtCheck
     }
 }
 
