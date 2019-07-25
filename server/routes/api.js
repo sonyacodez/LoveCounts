@@ -96,7 +96,7 @@ router.get(`/thisMonthExpenses/:coupleKey/:startDate/:endDate`, (req,res)=>{
             })
             const categoryArray = Object.keys(categoryAndAmountObject)
             const amountArray = []
-            categoryArray.forEach(c => amountArray)
+            // categoryArray.forEach(c => amountArray)
             for(let i in categoryArray){
                 amountArray.push(categoryAndAmountObject[categoryArray[i]])
             }
@@ -106,6 +106,64 @@ router.get(`/thisMonthExpenses/:coupleKey/:startDate/:endDate`, (req,res)=>{
             }
             res.send(categoryAndAmountArrays)
         })
+})
+
+router.get(`/multipleMonthExpenses/:coupleKey/:fstartDate/:fendDate/:sstartDate/:sendDate`, (req,res)=>{
+    const coupleKey = req.params.coupleKey
+    const firstStartDate = moment(req.params.fstartDate)
+    const firstEndDate = moment(req.params.fendDate)
+    const secondStartDate = moment(req.params.sstartDate)
+    const secondEndDate = moment(req.params.sendDate)
+
+    // First Month------------------------------
+    UserCouple.findById(coupleKey)
+    .populate('transactions')
+    .exec((err,thisUser)=>{
+        const firstMonthObject = {}
+        const allExpenses = thisUser.transactions.filter(t => t.type === "Expense")
+        const firstMonthOnly = allExpenses.filter(e => moment(e.date).isBetween(firstStartDate, firstEndDate))
+        firstMonthOnly.forEach(e => {
+            if(firstMonthObject[e.category]){
+                firstMonthObject[e.category] += e.amount
+            }
+            else{
+                firstMonthObject[e.category] = e.amount
+            }
+        })
+        const labelArray = Object.keys(firstMonthObject)
+        const firstAmountArray = []
+        labelArray.forEach(f => firstAmountArray)
+        for(let i in labelArray){
+            firstAmountArray.push(firstMonthObject[labelArray[i]])
+        }
+
+    // Second Month------------------------------
+        const secondMonthObject = {}
+        const secondMonthOnly = allExpenses.filter(e => moment(e.date).isBetween(secondStartDate, secondEndDate))
+        secondMonthOnly.forEach(e => {
+            if(secondMonthObject[e.category]){
+                secondMonthObject[e.category] += e.amount
+            }
+            else{
+                secondMonthObject[e.category] = e.amount
+            }
+        })
+        const secondAmountArray = []
+        for(let i in labelArray){
+            secondAmountArray.push(secondMonthObject[labelArray[i]])
+        }
+        console.log(secondMonthObject);
+        
+    // FINAL OBJECT WITH 3 ARRAYS-------------------
+
+        const categoryAndAmountArrays = {
+            categories: labelArray,
+            firstMonth: firstAmountArray,
+            secondMonth: secondAmountArray
+
+        }
+        res.send(categoryAndAmountArrays)
+    })
 })
 
 router.get(`/thisMonthTransactions/:coupleKey/:startDate/:endDate`, (req,res)=>{

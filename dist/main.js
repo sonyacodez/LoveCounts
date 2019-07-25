@@ -1,8 +1,7 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d370f800f89019d266989ec' //Liat's key
-const userName = "Sonya",partnerName="Nadav"
-
+let coupleKey = '5d395286206031637e61b252' //Sonya's key
+const userName = "Sonya"
 
 const loadTransactionPage = async function () {
     await manager.getTransactions(coupleKey)

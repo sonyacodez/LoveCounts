@@ -48,16 +48,36 @@ const Transaction = require('./server/models/Transaction')
 //     comment: "Salary for July 2019"
 // })
 
+// const water = new Transaction ({
+//     type: "Expense",
+//     category: "Fun",
+//     amount: 500,
+//     date: "2019-06-05",
+//     comment: "Fun stuff"
+// })
+
+// const watert = new Transaction ({
+//     type: "Expense",
+//     category: "Food",
+//     amount: 200,
+//     date: "2019-06-15",
+//     comment: "Food stuff"
+// })
+
 // rentPayment.save()
 // shoppingSpree.save()
 // pizzaParty.save()
 // salary.save()
 // sonyaAndNadav.save()
+// water.save()
+// watert.save()
 
 // sonyaAndNadav.transactions.push(rentPayment)
 // sonyaAndNadav.transactions.push(shoppingSpree)
 // sonyaAndNadav.transactions.push(pizzaParty)
 // sonyaAndNadav.transactions.push(salary)
+// sonyaAndNadav.transactions.push(water)
+// sonyaAndNadav.transactions.push(watert)
 
 
 mongoose.connect('mongodb://localhost/LoveCounts', {useNewUrlParser: true })
