@@ -256,3 +256,8 @@ font-weight: 900;
     height: 80px;
     width: 80px;
 }
+
+.chart-btn{
+    position: relative;
+left:300px;
+}
