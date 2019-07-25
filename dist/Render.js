@@ -84,10 +84,10 @@ const Render = function () {
         $('#container').append(`<canvas id="myChart" height="110"></canvas>`);
         if (chartType === "Pie") {
             renderPieChart(categories, amount)
-            $('#container').append(`<button id="change-to-bar-table-btn">Compare the last 2 months</div>`)
+            $('#container').append(`<button class="chart-btn" id="change-to-bar-table-btn">Compare The Past 2 Months</div>`)
         } else if (chartType === "Bar") {
             renderBarChart(categories, amount.firstMonth, amount.secondMonth, savings)
-            $('#container').append(`<button id="change-to-pie-table-btn">Check this month expenses</div>`)
+            $('#container').append(`<button class="chart-btn" id="change-to-pie-table-btn">Check This Month's Expenses</div>`)
         }
 // =======
 //         $('#container').append(`<canvas id="myChart"></canvas>`);
@@ -134,7 +134,7 @@ const Render = function () {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: "Exspenses",
+                    label: "Expenses",
                     backgroundColor: ["#f1c40f", "#9b59b6", "#fd79a8", "#27ae60", "#2980b9", "#778beb", "#16a085", "#7ed6df"],
                     data: data
                 }]
@@ -143,7 +143,7 @@ const Render = function () {
                 title: {
                     display: true,
                     fontSize: 20,
-                    text: 'What did you spend on this month?'
+                    text: 'What Were Your Expenses This Month?'
                 }, animation: {
                     duration: 1500,
                     easing: "linear"

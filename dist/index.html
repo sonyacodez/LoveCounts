@@ -53,7 +53,7 @@
           <div>Airline: <span id="flight-info">{{airline}}</span></div>
         </div>
         <div class="flight-price" id="col4">
-          {{price}}$
+          ${{price}}
         </div>
       </div>
     {{/each}} 
@@ -86,7 +86,7 @@
     <div id="profile-page">
     <div id="profile-header">Hi {{userName}}!</div>
     <div id="love-counts-gif"><img src="../pics/Long-Gif-love-counts-1-ANIMATION.gif"></div>
-    <div id="profile-choose">Choose your favorites goals:</div>
+    <div id="profile-choose">Choose your favorite goals:</div>
     <div id="goals-box">
         {{#if favGoals.Travel}}
         <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Travel</a>
@@ -94,23 +94,23 @@
         <a data-id="Travel" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Travel</a>
         {{/if}}
         {{#if favGoals.House}}
-        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a house</a>
+        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a House</a>
         {{else}}
-        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a house</a>
+        <a data-id="House" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a House</a>
         {{/if}}
         {{#if favGoals.Car}}
-        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a car</a>
+        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Buy a Car</a>
         {{else}}
-        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a car</a>
+        <a data-id="Car" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Buy a Car</a>
         {{/if}}
         {{#if favGoals.Sport}}
-        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Go to a sports event</a>
+        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="fas fa-heart"></i>Go to a Sports Event</a>
         {{else}}
-        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Go to a sports event</a>
+        <a data-id="Sport" class="fav-item waves-effect waves-light btn blue lighten-1"><i class="far fa-heart"></i>Go to a Sports Event</a>
         {{/if}}
       </div>
    
-    <div>you can go to the Recommendations page and check our suggestions at any time!<div></div>
+    <div>You can go to the Recommendations page and see your recommendations at any time!<div></div>
   </div>
   </script>
 
