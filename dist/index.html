@@ -38,6 +38,7 @@
   </script>
 
   <script id="flights-template" type="text/x-handlebars-template">
+    <div id="flights-container">
     {{#each flights}}
     <div id="flight-card">
         <div id="col1">
@@ -55,7 +56,8 @@
           {{price}}$
         </div>
       </div>
-    {{/each}}      
+    {{/each}} 
+  </div>     
   </script>
 
   <script id="events-template" type="text/x-handlebars-template">
