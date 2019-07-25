@@ -66,12 +66,18 @@ class LoveManager {
     }
 
     async getLastQuorterExpenses(coupleKey,month){
-        const firstMonth = month-2;
-        let curStartDate = moment(`2019-${firstMonth}-01`).format('LLLL');
+        let curStartDate = moment(`2019-${month}-01`).format('LLLL');
         let curEndDate = moment(`2019-${month}-31`).format('LLLL');
-        let result = await $.get(`/thisMonthExpenses/${coupleKey}/${curStartDate}/${curEndDate}`)
-        console.log(result)
-        return result
+
+        // const firstMonth = month-2;
+        // let firstStartDate = moment(`2019-${firstMonth}-01`).format('LLLL');
+        // let firstEndDate = moment(`2019-${firstMonth}-31`).format('LLLL');
+
+        const secondMonth = month-1;
+        let secondStartDate = moment(`2019-${secondMonth}-01`).format('LLLL');
+        let secondEndDate = moment(`2019-${secondMonth}-31`).format('LLLL');
+        let finalResult = await $.get(`/multipleMonthExpenses/${coupleKey}/${secondStartDate}/${secondEndDate}/${curStartDate}/${curEndDate}`)
+        return finalResult
     }
 
 
@@ -135,3 +141,5 @@ class LoveManager {
     // }
 }
 
+const loveManager = new LoveManager();
+loveManager.getLastQuorterExpenses('5d370810c6046607fc5e5e56',1)

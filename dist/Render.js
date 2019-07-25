@@ -117,6 +117,11 @@ const Render = function () {
 
         });
     }
+
+    function renderDebtCheck(debt){
+        alert(`You have a debt of $${debt} this month!`)
+    }
+
     return {
         renderTransactionPage,
         renderNavbar,
@@ -126,7 +131,8 @@ const Render = function () {
         renderRecTravelForm,
         renderFlights,
         renderLoading,
-        renderSportsEvents
+        renderSportsEvents,
+        renderDebtCheck
     }
 }
 
