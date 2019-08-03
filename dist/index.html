@@ -13,12 +13,89 @@
 </head>
 
 <body>
-  
-  <div class="navbar">
-  </div>
-  <div id="container">
-  </div>
+
+  <div class="navbar"></div>
+  <div id="container"></div>
   <div id="form-container"></div>
+
+  <script id="signup-template" type="text/x-handlebars-template">
+    <div class="sign-up-screen">
+    <div class="signup-container white z-depth-2">
+        <ul id="signup-tabs" class="tabs red darken-3">
+          <li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
+          <li class="tab col s3"><a class="white-text"><img id="signup-logo" src="../pics/LogoMakr_7JRRYI.png"></a></li>
+          <li class="tab col s3"><a class="white-text" href="#register">register</a></li>
+        </ul>
+        {{#if true}}
+        <div id="login" class="col s12">
+          <form class="col s12">
+            <div class="form-container">
+              <div class="header-container"><h3 class="signup-header">Hello</h3></div>
+              <div class="row">
+                <div id="signup-input" class="input-field col s12">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="signup-input" class="input-field col s12">
+                  <input id="password" type="password" class="validate">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <br>
+              <center>
+                <button class="btn waves-effect waves-light red darken-3" type="submit" name="action">Connect</button>
+                <br>
+                <br>
+                <a href="">Forgotten password?</a>
+              </center>
+            </div>
+          </form>
+        </div>
+        {{else}}
+        <div id="register" class="col s12">
+          <form class="col s12">
+            <div class="form-container ">
+              <div class="header-container"><h3 class="signup-header">Welcome</h3></div>
+              <div class="row">
+                <div id="signup-input" class="input-field col s6">
+                  <input id="last_name" type="text" class="validate">
+                  <label for="last_name">First Name</label>
+                </div>
+                <div id="signup-input" class="input-field col s6">
+                  <input id="last_name" type="text" class="validate">
+                  <label for="last_name">Last Name</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="signup-input" class="input-field col s12">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="signup-input" class="input-field col s12">
+                  <input id="password" type="password" class="validate">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="signup-input" class="input-field col s12">
+                  <input id="password-confirm" type="password" class="validate">
+                  <label for="password-confirm">Password Confirmation</label>
+                </div>
+              </div>
+              <center>
+                <button class="btn waves-effect waves-light red darken-3" type="submit" name="action">Submit</button>
+              </center>
+            </div>
+          </form>
+        </div>
+        {{/if}}
+      </div>
+    </div>            
+  </script>
 
   <script id="rec-page-template" type="text/x-handlebars-template">
     <div class="box3 sb14">You saved <span id="savings"> ${{savings}} </span> this month!<br>

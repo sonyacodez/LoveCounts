@@ -1,6 +1,13 @@
 
 const Render = function () {
 
+    const renderSignUpPage = function (expenses, currentDate) {
+        $("#container").empty()
+        const source = $('#signup-template').html();
+        const template = Handlebars.compile(source);
+        let newHTML = template({ login:false });
+        $('#container').append(newHTML);
+    }
     const renderTransactionPage = function (expenses, currentDate) {
         $("#container").empty()
         const source = $('#transaction-template').html();
@@ -89,11 +96,6 @@ const Render = function () {
             renderBarChart(categories, amount.firstMonth, amount.secondMonth, savings)
             $('#container').append(`<button class="chart-btn" id="change-to-pie-table-btn">Check This Month's Expenses</div>`)
         }
-// =======
-//         $('#container').append(`<canvas id="myChart"></canvas>`);
-
-//         renderPieChart(categories, amount)
-// >>>>>>
         $('#container').append(`<div class="box3 sb14">You saved <span id="savings"> $${savings} </span> this month!<br>
                                     Check your Recommendations page to see what you can spend your savings on.
                                 </div>`)
@@ -171,7 +173,8 @@ const Render = function () {
         renderFlights,
         renderLoading,
         renderSportsEvents,
-        renderDebtCheck
+        renderDebtCheck,
+        renderSignUpPage
     }
 }
 

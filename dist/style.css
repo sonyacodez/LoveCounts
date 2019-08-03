@@ -261,3 +261,66 @@ font-weight: 900;
     position: relative;
 left:300px;
 }
+
+.sign-up-screen{
+    display: flex;
+    justify-content: center;
+}
+.signup-container{
+    width: 500px;   
+    /* height: 600px; */
+    /* margin-left: 50%; */
+    margin-top: 30px;
+}
+#register{
+    padding: 20px;
+}
+#login{
+    padding: 20px;
+}
+#signup-tabs{
+    /* height: 70px; */
+    display: flex;
+    align-content: center;
+    align-content: center;
+    justify-content: center;
+
+}
+
+#signup-logo{
+height: 48px;
+margin-left: 50px;
+margin-right: 50px;
+}
+
+.signup-header{
+    /* color:#c62828; */
+    font-family: 'Lato', sans-serif;
+    margin: 0px;
+}
+
+#form-container{
+    display: flex;
+    align-content: center;
+    align-content: center;
+    justify-content: center;
+}
+.header-container{
+    display: flex;
+    align-content: center;
+    align-content: center;
+    justify-content: center;
+}
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+  }
+
+  #signup-input  input:focus + label {
+    color: #C62828;
+  }
+  #signup-input input:focus {
+    border-bottom: 1px solid #C62828;;
+    box-shadow: 0 1px 0 0 #C62828;
+  }
+  
