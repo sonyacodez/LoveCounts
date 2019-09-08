@@ -1,7 +1,7 @@
 
 ## loveCounts - Expense Tracker and Budget Planner for Couples
 
-An app that helps couples set and meet financial goals.
+An app that helps couples set and meet their financial goals.
 
 ### Built With:
 - jQuery
@@ -11,7 +11,8 @@ An app that helps couples set and meet financial goals.
 - Express.js
 - MongoDB
 - Mongoose
-- external API
+- Flights API
+- Sport Events API
 - Charts.js npm package
 
 ### features:
@@ -27,12 +28,12 @@ An app that helps couples set and meet financial goals.
 
 
 ###### User Profile
-![alt text](src/images/profile.png "User profile")
+![alt text](images/profile.png "User profile")
 ###### Current Month Pie Chart (By Category)
-![alt text](src/images/pie_chart.png "Pie chart")
+![alt text](images/pie_chart.png "Pie chart")
 ###### Monthly Comparison Bar Chart
-![alt text](src/images/bar_chart.png "Bar chart")
+![alt text](images/bar_chart.png "Bar chart")
 ###### Transactions List
-![alt text](src/images/transactions.png "Transactions list")
+![alt text](images/transactions.png "Transactions list")
 ###### Add Transaction
 ![alt text](images/main.png "Add transaction")
