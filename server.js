@@ -104,6 +104,7 @@ const Transaction = require('./server/models/Transaction')
 //     date: "2019-06-28",
 //     comment: "Had people over & ordered sushi"
 // })
+// // 
 
 // const t12 = new Transaction ({
 //     type: "Expense",
@@ -222,14 +223,14 @@ const Transaction = require('./server/models/Transaction')
 // sonyaAndNadav.transactions.push(t2)
 // sonyaAndNadav.transactions.push(t1)
 
-mongoose.connect('mongodb://localhost/LoveCounts', {useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/LoveCounts', {useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'dist')))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/', api)
 
-app.listen(3000, function(){
+app.listen(process.env.PORT || 3000, function(){
 console.log('Server up and running on port 3000')
 })
 

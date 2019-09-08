@@ -1,8 +1,33 @@
 const renderer = Render()
 const manager = new LoveManager()
-let coupleKey = '5d39726ba5e3e451480887ae' //Liat's key
+let coupleKey = '5d3d6b8b19f8785ce82572ac' //Liat's key
 const userName = "Sonya",partnerName="Nadav"
 
+const loadAuthenticationPage = async function () {
+    renderer.renderSignUpPage()
+    // await manager.getTransactions(coupleKey)
+    // const expenses = manager.allTransactions
+    // let currentDate = moment(new Date()).format("YYYY-MM-DD")
+    // expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
+    // expenses.forEach(e => { e.date = moment(e.date).format("MMM Do YYYY") })
+    // renderer.renderTransactionPage(expenses, currentDate)
+}
+const loadLoginPage = async function () {
+    // await manager.getTransactions(coupleKey)
+    // const expenses = manager.allTransactions
+    // let currentDate = moment(new Date()).format("YYYY-MM-DD")
+    // expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
+    // expenses.forEach(e => { e.date = moment(e.date).format("MMM Do YYYY") })
+    // renderer.renderTransactionPage(expenses, currentDate)
+}
+const loadSignupPage = async function () {
+    // await manager.getTransactions(coupleKey)
+    // const expenses = manager.allTransactions
+    // let currentDate = moment(new Date()).format("YYYY-MM-DD")
+    // expenses.forEach(e => { e.type === 'Expense' ? e.type = true : e.type = false })
+    // expenses.forEach(e => { e.date = moment(e.date).format("MMM Do YYYY") })
+    // renderer.renderTransactionPage(expenses, currentDate)
+}
 
 const loadTransactionPage = async function () {
     await manager.getTransactions(coupleKey)
@@ -165,5 +190,7 @@ const submitTransaction = async function (type) {
 
 renderer.renderNavbar()
 loadTransactionPage()
+// loadAuthenticationPage()
+
 
 
