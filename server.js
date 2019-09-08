@@ -104,6 +104,7 @@ const Transaction = require('./server/models/Transaction')
 //     date: "2019-06-28",
 //     comment: "Had people over & ordered sushi"
 // })
+// // 
 
 // const t12 = new Transaction ({
 //     type: "Expense",
@@ -221,7 +222,6 @@ const Transaction = require('./server/models/Transaction')
 // sonyaAndNadav.transactions.push(t3)
 // sonyaAndNadav.transactions.push(t2)
 // sonyaAndNadav.transactions.push(t1)
-
 
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/LoveCounts', {useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'dist')))
